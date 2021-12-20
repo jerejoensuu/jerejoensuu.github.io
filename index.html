@@ -1,68 +1,52 @@
+
 <!DOCTYPE html>
-<html lang="fi">
-
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Bloom or Gloom</title>
-    <link rel="stylesheet" type="text/css" href="page.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <style>
+        body { background-color:lightBlue; }
+        #snow{
+            background: none;
+            font-family: Androgyne;
+            background-image: url('images\smallhead1.png'), url('images\smallhead2.png'), url('images\smallhead3.png');
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            z-index:1;
+            -webkit-animation: snow 1000s linear infinite;
+            -moz-animation: snow 1000s linear infinite;
+            -ms-animation: snow 1000s linear infinite;
+            animation: snow 1000s linear infinite;
+            -webkit-transform: translate3d(0,0,0);
+            -moz-transform: translate3d(0,0,0);
+            -ms-transform: translate3d(0,0,0);
+            -o-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+        }
+        @keyframes snow {
+          0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+          100% {background-position: 50000px 50000px, 10000px 20000px, -10000px 15000px;}          
+        }
+        @-moz-keyframes snow {
+          0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+          100% {background-position: 50000px 50000px, 10000px 20000px, -10000px 15000px;}          
+        }
+        @-webkit-keyframes snow {
+          0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+          100% {background-position: 50000px 50000px, 10000px 20000px, -10000px 15000px;}          
+        }
+        @-ms-keyframes snow {
+          0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+          100% {background-position: 50000px 50000px, 10000px 20000px, -10000px 15000px;}          
+        }   
+    </style>
 </head>
-
 <body>
-    <div class="header">
-        <h1 class="title"> Bloom or Gloom </h1>
-        <a href="english.html">In English</a>
-    </div>
-
-    <div class="wrapper">
-        <div class="content">
-            <div class="description">
-                <img class="item1" src="images/screen1.jpg" alt="screenshot 1" />
-                <grid-item class="item2">
-                    <p>
-                        Bloom or Gloom on klikkeripeli tunnetaidoista.
-                    </p>
-                </grid-item>
-                <img class="item3" src="images/screen2.jpg" alt="screenshot 2" />
-                <grid-item class="textbox">
-                    <p class="item4">
-                        Auta hahmoa hankkimalla päivityksiä ja nostamalla hänen onnellisuuttaan.
-                    </p>
-                </grid-item>
-                <img class="item5" src="images/screen3.jpg" alt="screenshot 3" />
-                <grid-item class="textbox">
-                    <p class="item6">
-                        Jokainen päivitys ja klikkaus on yksi askel kohti hahmon ideaalista mielentilaa.
-                    </p>
-                </grid-item>
-            </div>
-        </div>
-        <div class="sidebar">
-            <div>
-                <img src="images/robin.png" alt="robin" />
-                <img src="images/miro.png" alt="miro" />
-                <p>Scrum master: Robin</p>
-                <p>Ohjelmoija: Miro</p>
-            </div>
-            <div>
-                <img src="images/jaakko.png" alt="jaakko" />
-                <img src="images/jere.png" alt="jere" />
-                <p>Ohjelmoija: Jaakko</p>
-                <p>Graafikko: Jere</p>
-            </div>
-        </div>
-    </div>
-    <footer>
-        <div class="footer1">
-            <img src="images/eo-logo.png" alt="Eläytyen osalliseksi logo" />
-            <img src="images/eu.png" alt="Euroopan unioni logo" />
-            <img src="images/SASKY2_vaaka_150dpi.png" alt="SASKY logo" />
-            <img src="images/vipuvoimaa.png" alt="Vipuvoimaa logo" />
-        </div>
-        <div class="footer2">
-            <img src="images/tamk-logo.png" alt="TAMK logo" />
-            <img src="images/tiko_logo_musta_fin.png" alt="TIKO logo" />
-        </div>
-    </footer>
+    <div id="snow">
+</div>
 </body>
-
 </html>
