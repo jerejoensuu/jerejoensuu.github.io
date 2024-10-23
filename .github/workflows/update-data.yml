@@ -4,7 +4,7 @@ name: Update Cached Data
 
 on:
   schedule:
-    - cron: '0 * * * *' # Runs every hour
+    - cron: '*/5 * * * *' # Runs every 5 minutes
   workflow_dispatch: # Allows manual triggering of the workflow
 
 jobs:
