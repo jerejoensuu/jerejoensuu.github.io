@@ -23,11 +23,14 @@ async function fetchProjects() {
             const projectThumbnail =
                 project.thumbnail || 'images/blank-thumbnail.png';
 
+            // Create clickable elements (thumbnail and title linking to the repo)
             projectCard.innerHTML = `
-          <img src="${projectThumbnail}" alt="${project.name} Thumbnail" class="project-thumbnail">
-          <h3>${project.name}</h3>
-          <p>${project.description || 'No description available'}</p>
-        `;
+                <a href="${project.html_url}" target="_blank">
+                    <img src="${projectThumbnail}" alt="${project.name} Thumbnail" class="project-thumbnail">
+                    <h3>${project.name}</h3>
+                </a>
+                <p>${project.description || 'No description available'}</p>
+            `;
 
             projectsGrid.appendChild(projectCard);
         }
