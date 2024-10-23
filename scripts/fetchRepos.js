@@ -65,6 +65,12 @@ async function fetchProjectThumbnail(owner, repo) {
 
 async function fetchRepos() {
     try {
+        console.log('ACTIONS_TOKEN is set:', !!process.env.ACTIONS_TOKEN);
+        if (!process.env.ACTIONS_TOKEN) {
+            console.error('Error: ACTIONS_TOKEN environment variable is not set.');
+            process.exit(1);
+        }
+
         const apiUrl = `https://api.github.com/users/${OWNER}/repos`;
         const response = await fetch(apiUrl, {
             headers: {
@@ -73,7 +79,13 @@ async function fetchRepos() {
             },
         });
 
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`HTTP error! Status: ${response.status}\n${errorText}`);
+        }
+
         const repos = await response.json();
+        console.log('API Response:', repos);
 
         // Fetch thumbnails for each repo
         const reposWithThumbnails = [];
