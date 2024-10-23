@@ -1,0 +1,12 @@
+{
+    "name": "github-pages-cache",
+    "version": "1.0.0",
+    "description": "Cache GitHub API data for GitHub Pages",
+    "main": "fetchRepos.js",
+    "scripts": {
+        "fetch": "node scripts/fetchRepos.js"
+    },
+    "dependencies": {
+        "node-fetch": "^2.6.7"
+    }
+}

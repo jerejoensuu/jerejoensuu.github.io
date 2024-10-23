@@ -1,66 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
-<embed src="CV EN.pdf" type="application/pdf" width="100%" height="1080px" />
-
-<!-- <head>
-    <title>Game Developer Portfolio</title>
-    <link rel="stylesheet" href="style.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jere Joensuu - Game Developer Portfolio">
+    <title>Jere Joensuu - Game Developer Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts/script.js"></script>
 </head>
 
 <body>
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Projects</a>
-        <a href="#">Contact</a>
-    </nav>
     <header>
-        <img src="hero-image.jpg" alt="Game screenshot">
-        <h1>Welcome to my Game Developer Portfolio</h1>
-        <p>I am a skilled game developer specializing in Unity and C#. Check out my projects below to see what I can do.
-        </p>
+        <div class="container">
+            <h1>Jere Joensuu</h1>
+            <p>Game Developer</p>
+        </div>
     </header>
-    <main>
-        <section id="about">
-            <h2>About Me</h2>
-            <img src="headshot.jpg" alt="Headshot of game developer">
-            <p>Hi, my name is [Name] and I am a game developer. I have a degree in [Degree] from [University] and have
-                completed coursework in [Skills]. I am proficient in [Software] and have experience working on
-                [Projects].</p>
-        </section>
-        <section id="projects">
-            <h2>Projects</h2>
-            <div class="project">
-                <img src="project-screenshot.jpg" alt="Screenshot of game project">
-                <h3>Project Name</h3>
-                <p>Brief description of the project and my role in it.</p>
-                <a href="#">View More</a>
-                <a href="#">Download Demo</a>
+
+    <section id="about" class="container">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <img src="images/headshot_249px.jpg" alt="Jere Joensuu Headshot" class="headshot">
+            <div class="about-text">
+                <p>I'm a passionate game developer/programmer with experience in Unity and Unreal Engine. Always eager
+                    to learn more about game design and development. I have worked on various projects involving custom
+                    tools, gameplay mechanics, and more.</p>
             </div>
-        </section>
-        <section id="contact">
-            <h2>Contact</h2>
-            <form>
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-                <label for="message">Message:</label>
-                <textarea id="message" name="message" required></textarea>
-                <input type="submit" value="Send">
-            </form>
-            <p>You can also find me on:</p>
-            <ul>
-                <li><a href="#">LinkedIn</a></li>
-                <li><a href="#">GitHub</a></li>
-                <li><a href="#">Email</a></li>
-            </ul>
-        </section>
-    </main>
-    <footer>
-        <p>Copyright [Year] [Your Name]</p>
+        </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- WORK -->
+    <section id="work" class="container">
+        <h2>Work Experience</h2>
+        <div class="work-grid">
+            <div class="work-item">
+                <img src="images/skydomelogo.webp" alt="Skydome Entertainment Thumbnail" class="work-thumbnail">
+                <h3>Skydome Entertainment - Programmer</h3>
+                <p>2024/5 - Present</p>
+                <ul>
+                    <li>Developed custom editor tools for enhanced scene management and improved workflow.</li>
+                    <li>Worked on rendering controls, save system optimization, object tracking solutions, and cutscene integration.</li>
+                    <li>Focused on optimizing project performance and efficiency.</li>
+                    <li>Implemented efficient methods for managing object states and project-specific tools.</li>
+                </ul>
+            </div>
+            <div class="work-item">
+                <img src="images/apex_kings_nft_logo (1).png" alt="Supremacy Games Oy Thumbnail" class="work-thumbnail">
+                <h3>Supremacy Games Oy - Programmer</h3>
+                <p>2022/5 - 2023/7</p>
+                <ul>
+                    <li>Worked on the client-side of Apex Kings, a web3 racing game.</li>
+                    <li>Played a major role in creating the main gameplay and UI structure.</li>
+                    <li>Contributed to some of the game's design aspects.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- GITHUB PROJECTS -->
+    <section id="projects" class="container">
+        <h2>Projects on GitHub</h2>
+        <div id="projects-grid" class="projects-grid">
+            <!-- Project cards will be generated here by JavaScript -->
+        </div>
+    </section>
+
+    <section id="contact" class="container">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:jerepetteri.joensuu@gmail.com">jerepetteri.joensuu@gmail.com</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/jerejoensuu/" target="_blank">linkedin.com/in/jerejoensuu</a></p>
+        <p>GitHub: <a href="https://github.com/jerejoensuu" target="_blank">github.com/jerejoensuu</a></p>
+    </section>
+
+    <footer class="container">
+        <p>© 2024 Jere Joensuu</p>
     </footer>
-</body> -->
+</body>
 
 </html>
