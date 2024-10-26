@@ -40,7 +40,7 @@ function hideLoading() {
 
 function getEngineBadge(topics) {
     // Check project topics for engine/language
-    if (topics.includes('unity')) {
+    if (topics.some(topic => topic.includes('unity'))) {
         return `<div class="engine-badge">
             <img src="images/logos/unity-logo.svg" alt="Unity Project">
         </div>`;
