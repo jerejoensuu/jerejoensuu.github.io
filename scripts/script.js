@@ -1,43 +1,176 @@
-// Fetch projects from local JSON file
+// Store the last update timestamp globally
+let lastUpdateTime = null;
+let animationFrameId = null;
+
+// Utility function to format time difference with more precise timing
+function formatTimeDifference(startDate) {
+    const now = new Date();
+    const diff = Math.floor((now - startDate) / 1000); // difference in seconds
+
+    if (diff < 60) return `${diff} seconds ago`;
+    if (diff < 3600) return `${Math.floor(diff / 60)} minutes ago`;
+    if (diff < 86400) return `${Math.floor(diff / 3600)} hours ago`;
+    return `${Math.floor(diff / 86400)} days ago`;
+}
+
+// Update the "last updated" text using requestAnimationFrame
+function updateTimer() {
+    if (!lastUpdateTime) return;
+
+    const lastUpdatedElement = document.getElementById('last-updated');
+    if (lastUpdatedElement) {
+        lastUpdatedElement.textContent = `Last updated: ${formatTimeDifference(lastUpdateTime)}`;
+    }
+
+    // Request the next frame
+    animationFrameId = requestAnimationFrame(updateTimer);
+}
+
+// Show loading state
+function showLoading() {
+    const loadingElement = document.getElementById('projects-loading');
+    if (loadingElement) loadingElement.style.display = 'block';
+}
+
+// Hide loading state
+function hideLoading() {
+    const loadingElement = document.getElementById('projects-loading');
+    if (loadingElement) loadingElement.style.display = 'none';
+}
+
+function getEngineBadge(topics) {
+    // Check project topics for engine/language
+    if (topics.includes('unity')) {
+        return `<div class="engine-badge">
+            <img src="images/logos/unity-logo.svg" alt="Unity Project">
+        </div>`;
+    } else if (topics.includes('unreal-engine')) {
+        return `<div class="engine-badge">
+            <img src="images/logos/unreal-logo.svg" alt="Unreal Engine Project">
+        </div>`;
+    } else if (topics.includes('python')) {
+        return `<div class="engine-badge">
+            <img src="images/logos/python-logo.svg" alt="Python Project">
+        </div>`;
+    }
+    return ''; // Return empty string if no matching engine/language found
+}
+
+// Main function to fetch and display projects
 async function fetchProjects() {
+    showLoading();
+
+    // wait for 1 second to simulate loading time
+    await new Promise(resolve => setTimeout(resolve, 1000));
+
     try {
         const response = await fetch('data/repos.json');
         const projects = await response.json();
         const projectsGrid = document.getElementById('projects-grid');
 
-        // Filter out archived or forked repos
-        const filteredProjects = projects.filter(
-            project => !project.archived && !project.fork
-        );
+        // Clear existing content
+        if (projectsGrid) {
+            projectsGrid.innerHTML = '';
+        }
 
-        // Sort projects by creation date
-        filteredProjects.sort(
-            (a, b) => new Date(b.created_at) - new Date(a.created_at)
-        );
+        // Filter and sort projects
+        const filteredProjects = projects
+            .filter(project => !project.archived && !project.fork)
+            .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
 
         // Generate HTML for each project
-        for (const project of filteredProjects) {
+        filteredProjects.forEach(project => {
             const projectCard = document.createElement('div');
             projectCard.classList.add('project-item');
 
-            const projectThumbnail =
-                project.thumbnail || 'images/blank-thumbnail.png';
+            const projectThumbnail = project.thumbnail || 'images/blank-thumbnail.png';
+            const engineBadge = getEngineBadge(project.topics || []);
 
-            // Create clickable elements (thumbnail and title linking to the repo)
             projectCard.innerHTML = `
-                <a href="${project.html_url}" target="_blank">
-                    <img src="${projectThumbnail}" alt="${project.name} Thumbnail" class="project-thumbnail">
+                <a href="${project.html_url}" target="_blank" rel="noopener noreferrer">
+                    <div class="project-thumbnail-container">
+                        ${engineBadge}
+                        <img 
+                            src="${projectThumbnail}" 
+                            alt="${project.name} Thumbnail" 
+                            class="project-thumbnail"
+                            loading="lazy"
+                        >
+                    </div>
                     <h3>${project.name}</h3>
                 </a>
                 <p>${project.description || 'No description available'}</p>
+                <div class="project-tags">
+                    ${project.topics ? project.topics.map(topic =>
+                `<span class="project-tag">${topic}</span>`
+            ).join('') : ''}
+                </div>
             `;
 
             projectsGrid.appendChild(projectCard);
+        });
+
+        // Update the last update timestamp with current time
+        lastUpdateTime = new Date();
+
+        // Cancel any existing animation frame
+        if (animationFrameId) {
+            cancelAnimationFrame(animationFrameId);
         }
+        // Start the timer update
+        updateTimer();
+
     } catch (error) {
-        console.error('Error fetching projects from local JSON:', error);
+        console.error('Error fetching projects:', error);
+        const projectsGrid = document.getElementById('projects-grid');
+        if (projectsGrid) {
+            projectsGrid.innerHTML = `
+                <div class="error-message">
+                    Unable to load projects. Please try again later.
+                </div>
+            `;
+        }
+    } finally {
+        hideLoading();
     }
 }
 
-// Call fetchProjects when the page loads
-document.addEventListener('DOMContentLoaded', fetchProjects);
+// Clean up function to cancel animation frame when needed
+function cleanup() {
+    if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+        animationFrameId = null;
+    }
+}
+
+// Initialize when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    fetchProjects();
+
+    // Refresh projects every 5 minutes
+    setInterval(fetchProjects, 300000);
+});
+
+// Clean up when page is hidden/closed
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+        cleanup();
+    } else {
+        if (!animationFrameId) {
+            updateTimer();
+        }
+    }
+});
+
+// Cleanup on page unload
+window.addEventListener('beforeunload', cleanup);
+
+// Optional: Add smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});

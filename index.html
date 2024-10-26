@@ -23,12 +23,36 @@
         <div class="about-content">
             <img src="images/headshot_249px.jpg" alt="Jere Joensuu Headshot" class="headshot">
             <div class="about-text">
-                <p>I'm a passionate game developer specializing in <b>C#</b> and <b>Unity</b>. Always eager
+                <p>I'm a passionate game developer specializing in <strong>C#</strong> and <strong>Unity</strong>. Always eager
                     to learn more about game design and development. I have worked on various projects involving custom
                     tools, gameplay mechanics, and more.</p>
             </div>
         </div>
     </section>
+
+    <!-- Skills Section
+    <div id="skills" class="section container">
+        <h2>Technical Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-item">
+                <h3>C#</h3>
+                <div class="skill-level">Advanced</div>
+            </div>
+            <div class="skill-item">
+                <h3>Unity</h3>
+                <div class="skill-level">Advanced</div>
+            </div>
+            <div class="skill-item">
+                <h3>Game Development</h3>
+                <div class="skill-level">Intermediate</div>
+            </div>
+            <div class="skill-item">
+                <h3>Git</h3>
+                <div class="skill-level">Intermediate</div>
+            </div>
+            Add more skills as needed
+        </div>
+    </div> -->
 
     <hr class="divider">
 
@@ -43,10 +67,10 @@
                 <h3>Skydome Entertainment - Programmer</h3>
                 <p>2024 - Present</p>
                 <ul>
-                    <li>Developed custom editor tools for enhanced scene management and improved workflow.</li>
+                    <li>Developed <strong>custom editor tools</strong> for enhanced scene management and improved workflow.</li>
                     <li>Worked on rendering controls, save system optimization, object tracking solutions, and cutscene
                         integration.</li>
-                    <li>Focused on optimizing project performance and efficiency.</li>
+                    <li>Focused on optimizing project <strong>performance and efficiency</strong>.</li>
                     <li>Implemented efficient methods for managing object states and project-specific tools.</li>
                 </ul>
             </div>
@@ -56,7 +80,7 @@
                 <p>2022 - 2024</p>
                 <ul>
                     <li>Worked on the client-side of Apex Kings, a web3 racing game.</li>
-                    <li>Played a major role in creating the main gameplay and UI structure.</li>
+                    <li>Played a major role in creating the main <strong>gameplay and UI structure</strong>.</li>
                     <li>Contributed to some of the game's design aspects.</li>
                 </ul>
             </div>
@@ -65,12 +89,14 @@
 
 
     <!-- GITHUB PROJECTS -->
-    <section id="projects" class="container">
-        <h2>Projects on GitHub</h2>
-        <div id="projects-grid" class="projects-grid">
-            <!-- Project cards will be generated here by JavaScript -->
+    <div id="projects" class="section container">
+        <div class="projects-header">
+            <h2>Projects on GitHub</h2>
+            <span id="last-updated" class="last-updated"></span>
         </div>
-    </section>
+        <div id="projects-loading" class="loading-spinner" style="display: none;"></div>
+        <div id="projects-grid" class="projects-grid"></div>
+    </div>
 
     <section id="contact" class="container">
         <h2>Contact</h2>
