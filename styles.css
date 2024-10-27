@@ -262,26 +262,41 @@ html {
     }
 }
 
-/* Skills Section */
-.skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1rem;
-    margin: 2rem 0;
+/* Skills & Learning Tags */
+.skills-tags {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
 
-.skill-item {
-    background: white;
-    padding: 1rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.2s, box-shadow 0.2s;
+.skills-tags p {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
 }
 
-.skill-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+.tag {
+    background-color: var(--secondary);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    display: inline-block;
+    transition: background-color 0.2s ease;
+}
+
+/* Secondary Tag */
+.tag2 {
+    background-color: #bdc3c7; /* lighter, neutral color */
+    color: #2c3e50; /* darker text for contrast */
+    padding: 0.2rem 0.6rem; /* slightly smaller padding */
+    border-radius: 10px;
+    font-size: 0.7rem; /* smaller font size */
+    font-weight: 500;
+    display: inline-block;
+    transition: background-color 0.2s ease;
 }
 
 /* Enhanced Project Items */
@@ -299,6 +314,7 @@ html {
     flex-wrap: wrap;
     gap: 0.5rem;
     margin-top: 0.5rem;
+    justify-content: center;
 }
 
 .project-tag {
@@ -309,6 +325,7 @@ html {
     font-size: 0.75rem;
 }
 
+    
 /* Loading Animation */
 .loading-spinner {
     width: 40px;
@@ -386,7 +403,6 @@ html {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
 }
 
 .error-message {
