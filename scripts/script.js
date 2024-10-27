@@ -162,11 +162,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentScroll > 200) { // Show after scrolling 200px
             stickyHeader.classList.add('visible');
             // body.classList.add('header-fixed');
-            mainHeader.classList.add('fade');
         } else {
             stickyHeader.classList.remove('visible');
             // body.classList.remove('header-fixed');
-            mainHeader.classList.remove('fade');
         }
 
         lastScroll = currentScroll;
