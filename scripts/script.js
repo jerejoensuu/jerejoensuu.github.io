@@ -149,6 +149,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Refresh projects every 5 minutes
     setInterval(fetchProjects, 300000);
+
+    const stickyHeader = document.querySelector('.sticky-header');
+    const mainHeader = document.querySelector('.main-header');
+    const body = document.body;
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+
+        // Show/hide sticky header based on scroll position and direction
+        if (currentScroll > 200) { // Show after scrolling 200px
+            stickyHeader.classList.add('visible');
+            // body.classList.add('header-fixed');
+            mainHeader.classList.add('fade');
+        } else {
+            stickyHeader.classList.remove('visible');
+            // body.classList.remove('header-fixed');
+            mainHeader.classList.remove('fade');
+        }
+
+        lastScroll = currentScroll;
+    });
 });
 
 // Clean up when page is hidden/closed

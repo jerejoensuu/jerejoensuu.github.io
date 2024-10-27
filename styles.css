@@ -289,11 +289,15 @@ html {
 
 /* Secondary Tag */
 .tag2 {
-    background-color: #bdc3c7; /* lighter, neutral color */
-    color: #2c3e50; /* darker text for contrast */
-    padding: 0.2rem 0.6rem; /* slightly smaller padding */
+    background-color: #bdc3c7;
+    /* lighter, neutral color */
+    color: #2c3e50;
+    /* darker text for contrast */
+    padding: 0.2rem 0.6rem;
+    /* slightly smaller padding */
     border-radius: 10px;
-    font-size: 0.7rem; /* smaller font size */
+    font-size: 0.7rem;
+    /* smaller font size */
     font-weight: 500;
     display: inline-block;
     transition: background-color 0.2s ease;
@@ -325,7 +329,7 @@ html {
     font-size: 0.75rem;
 }
 
-    
+
 /* Loading Animation */
 .loading-spinner {
     width: 40px;
@@ -441,4 +445,69 @@ html {
     top: 6px;
     left: 6px;
     filter: brightness(0) invert(1);
+}
+
+/* Sticky header styles */
+.sticky-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #2c3e50;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sticky-header.visible {
+    transform: translateY(0);
+}
+
+.sticky-header .name {
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.sticky-header .socials {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.sticky-header .social-icon {
+    color: #fff;
+    opacity: 0.8;
+    transition: opacity 0.2s ease;
+    width: 24px;
+    height: 24px;
+}
+
+.sticky-header .social-icon:hover {
+    opacity: 1;
+}
+
+/* Add some padding to the body to prevent content jump when header becomes fixed */
+body {
+    padding-top: 0;
+    transition: padding-top 0.3s ease;
+}
+
+/* body.header-fixed {
+    padding-top: 60px;
+} */
+
+/* Original header fade out */
+.main-header {
+    transition: opacity 0.3s ease;
+}
+
+.main-header.fade {
+    opacity: 0.3;
 }
