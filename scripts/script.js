@@ -44,7 +44,7 @@ function getEngineBadge(topics) {
         return `<div class="engine-badge">
             <img src="images/logos/unity-logo.svg" alt="Unity Project">
         </div>`;
-    } else if (topics.includes('unreal-engine')) {
+    } else if (topics.some(topic => topic.includes('unreal'))) {
         return `<div class="engine-badge">
             <img src="images/logos/unreal-logo.svg" alt="Unreal Engine Project">
         </div>`;
