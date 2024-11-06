@@ -90,7 +90,7 @@ async function fetchProjects() {
                     .split("\n")
                     .map(item => `<li>${item.replace("- ", "").trim()}</li>`)
                     .join("")
-                : "<li>No additional summary available.</li>";
+                : "";
 
             projectCard.innerHTML = `
                 <a href="${project.html_url}" rel="noopener noreferrer">
