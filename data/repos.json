@@ -407,14 +407,14 @@
     "releases_url": "https://api.github.com/repos/jerejoensuu/Pookie-Island/releases{/id}",
     "deployments_url": "https://api.github.com/repos/jerejoensuu/Pookie-Island/deployments",
     "created_at": "2022-04-10T17:32:24Z",
-    "updated_at": "2024-11-06T18:59:45Z",
-    "pushed_at": "2024-11-06T18:59:41Z",
+    "updated_at": "2024-11-06T19:36:42Z",
+    "pushed_at": "2024-11-06T19:36:38Z",
     "git_url": "git://github.com/jerejoensuu/Pookie-Island.git",
     "ssh_url": "git@github.com:jerejoensuu/Pookie-Island.git",
     "clone_url": "https://github.com/jerejoensuu/Pookie-Island.git",
     "svn_url": "https://github.com/jerejoensuu/Pookie-Island",
     "homepage": "https://nedrichard.itch.io/pookie-island",
-    "size": 892098,
+    "size": 892102,
     "stargazers_count": 0,
     "watchers_count": 0,
     "language": "C#",
@@ -452,7 +452,7 @@
       "pull": true
     },
     "thumbnail": "https://raw.githubusercontent.com/jerejoensuu/Pookie-Island/master/images/thumbnail.png",
-    "readme_summary": "School project\n  Responsible for:<ul>\n    player movement\n    cameras/cutscenes\n    vacuum and powerup mechanics</ul>"
+    "readme_summary": "School project\n  Complete game\n  Responsible for:<ul>\n    player movement\n    cameras/cutscenes\n    vacuum and powerup mechanics</ul>"
   },
   {
     "id": 457538865,
@@ -643,7 +643,7 @@
     "clone_url": "https://github.com/jerejoensuu/The-Tainted-Forest.git",
     "svn_url": "https://github.com/jerejoensuu/The-Tainted-Forest",
     "homepage": "",
-    "size": 396760,
+    "size": 396762,
     "stargazers_count": 0,
     "watchers_count": 0,
     "language": "C#",
