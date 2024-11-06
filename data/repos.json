@@ -67,8 +67,8 @@
     "releases_url": "https://api.github.com/repos/jerejoensuu/Arachnophobia-demo/releases{/id}",
     "deployments_url": "https://api.github.com/repos/jerejoensuu/Arachnophobia-demo/deployments",
     "created_at": "2024-10-30T12:05:00Z",
-    "updated_at": "2024-10-30T13:39:06Z",
-    "pushed_at": "2024-10-30T13:30:02Z",
+    "updated_at": "2024-11-06T14:01:43Z",
+    "pushed_at": "2024-11-06T14:01:00Z",
     "git_url": "git://github.com/jerejoensuu/Arachnophobia-demo.git",
     "ssh_url": "git@github.com:jerejoensuu/Arachnophobia-demo.git",
     "clone_url": "https://github.com/jerejoensuu/Arachnophobia-demo.git",
@@ -95,6 +95,7 @@
     "web_commit_signoff_required": false,
     "topics": [
       "horror",
+      "niagara-fx",
       "unreal-engine-5"
     ],
     "visibility": "public",
@@ -110,7 +111,7 @@
       "pull": true
     },
     "thumbnail": "https://raw.githubusercontent.com/jerejoensuu/Arachnophobia-demo/demo/images/Spiders.gif",
-    "readme_summary": ""
+    "readme_summary": "Solo project\n  UE learning project\n  Dynamic particle system for environmentally aware spiders"
   },
   {
     "id": 441248665,
@@ -406,8 +407,8 @@
     "releases_url": "https://api.github.com/repos/jerejoensuu/Pookie-Island/releases{/id}",
     "deployments_url": "https://api.github.com/repos/jerejoensuu/Pookie-Island/deployments",
     "created_at": "2022-04-10T17:32:24Z",
-    "updated_at": "2024-10-26T12:16:08Z",
-    "pushed_at": "2024-10-23T12:14:17Z",
+    "updated_at": "2024-11-06T14:05:48Z",
+    "pushed_at": "2024-11-06T14:05:44Z",
     "git_url": "git://github.com/jerejoensuu/Pookie-Island.git",
     "ssh_url": "git@github.com:jerejoensuu/Pookie-Island.git",
     "clone_url": "https://github.com/jerejoensuu/Pookie-Island.git",
@@ -451,7 +452,7 @@
       "pull": true
     },
     "thumbnail": "https://raw.githubusercontent.com/jerejoensuu/Pookie-Island/master/images/thumbnail.png",
-    "readme_summary": ""
+    "readme_summary": "School project\n  Responsible for all player related mechanics such as movement and vacuum mechanics"
   },
   {
     "id": 457538865,
@@ -635,8 +636,8 @@
     "releases_url": "https://api.github.com/repos/jerejoensuu/The-Tainted-Forest/releases{/id}",
     "deployments_url": "https://api.github.com/repos/jerejoensuu/The-Tainted-Forest/deployments",
     "created_at": "2021-12-23T17:18:45Z",
-    "updated_at": "2024-10-26T16:28:09Z",
-    "pushed_at": "2022-02-10T14:24:20Z",
+    "updated_at": "2024-11-06T14:09:46Z",
+    "pushed_at": "2024-11-06T14:09:33Z",
     "git_url": "git://github.com/jerejoensuu/The-Tainted-Forest.git",
     "ssh_url": "git@github.com:jerejoensuu/The-Tainted-Forest.git",
     "clone_url": "https://github.com/jerejoensuu/The-Tainted-Forest.git",
@@ -677,7 +678,7 @@
       "pull": true
     },
     "thumbnail": "https://raw.githubusercontent.com/jerejoensuu/The-Tainted-Forest/master/images/banner.gif",
-    "readme_summary": ""
+    "readme_summary": "School project\n  Acted as the unofficial lead programmer and made sure the code portion of the project met deadlines\n  Responsible for:\n  <ul>\n    The character and it's various functionalities\n    Easier level making tools (suchs as dynamic sprite loading depending on level type)\n    Level elements\n  </ul>"
   },
   {
     "id": 637450568,
@@ -747,8 +748,8 @@
     "releases_url": "https://api.github.com/repos/jerejoensuu/TheBanishment/releases{/id}",
     "deployments_url": "https://api.github.com/repos/jerejoensuu/TheBanishment/deployments",
     "created_at": "2023-05-07T15:40:19Z",
-    "updated_at": "2024-10-26T12:14:45Z",
-    "pushed_at": "2023-05-07T17:12:09Z",
+    "updated_at": "2024-11-06T14:04:33Z",
+    "pushed_at": "2024-11-06T14:04:25Z",
     "git_url": "git://github.com/jerejoensuu/TheBanishment.git",
     "ssh_url": "git@github.com:jerejoensuu/TheBanishment.git",
     "clone_url": "https://github.com/jerejoensuu/TheBanishment.git",
@@ -791,6 +792,6 @@
       "pull": true
     },
     "thumbnail": "https://raw.githubusercontent.com/jerejoensuu/TheBanishment/master/images/gif1.gif",
-    "readme_summary": ""
+    "readme_summary": "School project\n  Responsible for most (player movement, environment interactions, level system, etc)"
   }
 ]
