@@ -1,5 +1,6 @@
 const fs = require('fs');
 const fetch = require('node-fetch');
+const atob = require('atob');
 
 const OWNER = 'jerejoensuu';
 const DEFAULT_THUMBNAIL = 'images/blank-thumbnail.png';
@@ -53,7 +54,7 @@ async function fetchReadmeSummary(owner, repo) {
         const response = await fetch(apiUrl, {
             headers: {
                 'Authorization': `token ${process.env.ACTIONS_TOKEN}`,
-                'Accept': 'application/vnd.github.v3.raw',
+                'Accept': 'application/vnd.github.v3+json',
             },
         });
 
@@ -62,12 +63,20 @@ async function fetchReadmeSummary(owner, repo) {
             return "";
         }
 
-        const readmeContent = await response.text();
+        const readmeData = await response.json();
+
+        if (readmeData.encoding !== 'base64') {
+            console.warn(`Unexpected encoding for README in ${repo}: ${readmeData.encoding}`);
+            return "";
+        }
+
+        // Decode the Base64 content
+        const readmeContent = atob(readmeData.content);
 
         // Extract content between <summary> and </details> tags
         const summaryMatch = readmeContent.match(/<summary>[\s\S]*?<\/summary>([\s\S]*?)<\/details>/i);
         if (summaryMatch && summaryMatch[1]) {
-            return summaryMatch[1].trim().replaceAll("- ", "");
+            return summaryMatch[1].trim().replace(/- /g, "");
         } else {
             return "";
         }
