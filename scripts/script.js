@@ -85,9 +85,15 @@ async function fetchProjects() {
 
             const projectThumbnail = project.thumbnail || 'images/blank-thumbnail.png';
             const engineBadge = getEngineBadge(project.topics || []);
+            const projectSummary = project.readme_summary
+                ? project.readme_summary
+                    .split("\n")
+                    .map(item => `<li>${item.replace("- ", "").trim()}</li>`)
+                    .join("")
+                : "<li>No additional summary available.</li>";
 
             projectCard.innerHTML = `
-                <a href="${project.html_url}" target="_blank" rel="noopener noreferrer">
+                <a href="${project.html_url}" rel="noopener noreferrer">
                     <div class="project-thumbnail-container">
                         ${engineBadge}
                         <img 
@@ -97,12 +103,19 @@ async function fetchProjects() {
                             loading="lazy"
                         >
                     </div>
-                    <h3>${project.name}</h3>
                 </a>
-                <p>${project.description || 'No description available'}</p>
-                <div class="project-tags">
+                <div class="project-details">
+                    <a href="${project.html_url}"> <h3>${project.name}</h3> </a>
+                    <p>${project.description || 'No description available'}</p>
+                    <div class="project-summary">
+                        <ul>
+                            ${projectSummary}
+                        </ul>
+                    </div>
+                </div>
+                <div class="tag-group-2">
                     ${project.topics ? project.topics.map(topic =>
-                `<span class="project-tag">${topic}</span>`
+                `<span class="tag3">${topic}</span>`
             ).join('') : ''}
                 </div>
             `;
