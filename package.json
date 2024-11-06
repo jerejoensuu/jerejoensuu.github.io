@@ -7,6 +7,7 @@
         "fetch": "node scripts/fetchRepos.js"
     },
     "dependencies": {
-        "node-fetch": "^2.7.0"
+        "node-fetch": "^2.7.0",
+        "atob": "^2.1.2"
     }
 }
