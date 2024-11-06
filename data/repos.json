@@ -636,8 +636,8 @@
     "releases_url": "https://api.github.com/repos/jerejoensuu/The-Tainted-Forest/releases{/id}",
     "deployments_url": "https://api.github.com/repos/jerejoensuu/The-Tainted-Forest/deployments",
     "created_at": "2021-12-23T17:18:45Z",
-    "updated_at": "2024-11-06T14:27:37Z",
-    "pushed_at": "2024-11-06T14:27:33Z",
+    "updated_at": "2024-11-06T14:31:26Z",
+    "pushed_at": "2024-11-06T14:31:21Z",
     "git_url": "git://github.com/jerejoensuu/The-Tainted-Forest.git",
     "ssh_url": "git@github.com:jerejoensuu/The-Tainted-Forest.git",
     "clone_url": "https://github.com/jerejoensuu/The-Tainted-Forest.git",
@@ -678,7 +678,7 @@
       "pull": true
     },
     "thumbnail": "https://raw.githubusercontent.com/jerejoensuu/The-Tainted-Forest/master/images/banner.gif",
-    "readme_summary": "School project\n  Acted as the unofficial lead programmer and made sure the code portion of the project met deadlines\n  Responsible for:\n    <ul>The character and it's various functionalities\n    Easier level making tools (suchs as dynamic sprite loading depending on level type)\n    Level elements</ul>"
+    "readme_summary": "School project\n  Acted as the unofficial lead programmer and made sure the code portion of the project met deadlines\n  Responsible for:<ul>\n    The character and it's various functionalities\n    Easier level making tools (suchs as dynamic sprite loading depending on level type)\n    Level elements</ul>"
   },
   {
     "id": 637450568,
