@@ -67,8 +67,8 @@
     "releases_url": "https://api.github.com/repos/jerejoensuu/Arachnophobia-demo/releases{/id}",
     "deployments_url": "https://api.github.com/repos/jerejoensuu/Arachnophobia-demo/deployments",
     "created_at": "2024-10-30T12:05:00Z",
-    "updated_at": "2024-11-06T14:01:43Z",
-    "pushed_at": "2024-11-06T14:01:00Z",
+    "updated_at": "2024-11-07T17:48:42Z",
+    "pushed_at": "2024-11-07T17:48:38Z",
     "git_url": "git://github.com/jerejoensuu/Arachnophobia-demo.git",
     "ssh_url": "git@github.com:jerejoensuu/Arachnophobia-demo.git",
     "clone_url": "https://github.com/jerejoensuu/Arachnophobia-demo.git",
@@ -111,7 +111,7 @@
       "pull": true
     },
     "thumbnail": "https://raw.githubusercontent.com/jerejoensuu/Arachnophobia-demo/demo/images/Spiders.gif",
-    "readme_summary": "Solo project\n  UE learning project\n  Dynamic particle system for environmentally aware spiders"
+    "readme_summary": "Solo project\n  UE learning project\n  Dynamic particle system for environmentally aware spiders\n  The leg animation and movement code both run on the GPU allowing thousands of spiders to exist in a level\n  Car driveable"
   },
   {
     "id": 441248665,
@@ -522,8 +522,8 @@
     "releases_url": "https://api.github.com/repos/jerejoensuu/procedural-animation/releases{/id}",
     "deployments_url": "https://api.github.com/repos/jerejoensuu/procedural-animation/deployments",
     "created_at": "2022-02-09T21:45:15Z",
-    "updated_at": "2024-11-06T10:14:54Z",
-    "pushed_at": "2024-11-06T10:14:49Z",
+    "updated_at": "2024-11-07T17:45:56Z",
+    "pushed_at": "2024-11-07T17:45:52Z",
     "git_url": "git://github.com/jerejoensuu/procedural-animation.git",
     "ssh_url": "git@github.com:jerejoensuu/procedural-animation.git",
     "clone_url": "https://github.com/jerejoensuu/procedural-animation.git",
@@ -566,7 +566,7 @@
       "pull": true
     },
     "thumbnail": "https://raw.githubusercontent.com/jerejoensuu/procedural-animation/main/images/AllTogether.gif",
-    "readme_summary": "Solo project\r\n  Partly ready for outside project usage"
+    "readme_summary": "Solo project\r\n  Partly ready for outside project usage\r\n  Created creatures adapt to the environment and procedurally place their legs on surfaces\r\n  Legs move based on the velocity of the body for natural movement"
   },
   {
     "id": 884888667,
@@ -636,8 +636,8 @@
     "releases_url": "https://api.github.com/repos/jerejoensuu/SyncPlayer/releases{/id}",
     "deployments_url": "https://api.github.com/repos/jerejoensuu/SyncPlayer/deployments",
     "created_at": "2024-11-07T15:11:15Z",
-    "updated_at": "2024-11-07T15:15:03Z",
-    "pushed_at": "2024-11-07T15:14:28Z",
+    "updated_at": "2024-11-07T17:59:04Z",
+    "pushed_at": "2024-11-07T17:59:01Z",
     "git_url": "git://github.com/jerejoensuu/SyncPlayer.git",
     "ssh_url": "git@github.com:jerejoensuu/SyncPlayer.git",
     "clone_url": "https://github.com/jerejoensuu/SyncPlayer.git",
