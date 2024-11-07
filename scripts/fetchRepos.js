@@ -3,7 +3,7 @@ const fetch = require('node-fetch');
 const atob = require('atob');
 
 const OWNER = 'jerejoensuu';
-const DEFAULT_THUMBNAIL = 'images/blank-thumbnail.png';
+const DEFAULT_THUMBNAIL = 'images/blank-thumbnail.jpg';
 
 async function fetchProjectThumbnail(owner, repo) {
     const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/images`;
