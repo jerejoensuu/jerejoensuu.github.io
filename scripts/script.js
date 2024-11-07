@@ -96,11 +96,13 @@ async function fetchProjects() {
                 <a href="${project.html_url}" rel="noopener noreferrer">
                     <div class="project-thumbnail-container">
                         ${engineBadge}
+                        <div class="thumbnail-spinner loading-spinner-card"></div>
                         <img 
                             src="${projectThumbnail}" 
                             alt="${project.name} Thumbnail" 
                             class="project-thumbnail"
                             loading="lazy"
+                            onload="this.style.opacity='1'; this.previousElementSibling.style.display='none';"
                         >
                     </div>
                 </a>
