@@ -83,7 +83,7 @@ async function fetchProjects() {
             const projectCard = document.createElement('div');
             projectCard.classList.add('project-item');
 
-            const projectThumbnail = project.thumbnail || 'images/blank-thumbnail.png';
+            const projectThumbnail = project.thumbnail || 'images/blank-thumbnail.jpg';
             const engineBadge = getEngineBadge(project.topics || []);
             const projectSummary = project.readme_summary
                 ? project.readme_summary
