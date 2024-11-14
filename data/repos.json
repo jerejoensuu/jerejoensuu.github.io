@@ -636,14 +636,14 @@
     "releases_url": "https://api.github.com/repos/jerejoensuu/SyncPlayer/releases{/id}",
     "deployments_url": "https://api.github.com/repos/jerejoensuu/SyncPlayer/deployments",
     "created_at": "2024-11-07T15:11:15Z",
-    "updated_at": "2024-11-07T17:59:04Z",
-    "pushed_at": "2024-11-07T17:59:01Z",
+    "updated_at": "2024-11-13T22:01:15Z",
+    "pushed_at": "2024-11-13T22:01:12Z",
     "git_url": "git://github.com/jerejoensuu/SyncPlayer.git",
     "ssh_url": "git@github.com:jerejoensuu/SyncPlayer.git",
     "clone_url": "https://github.com/jerejoensuu/SyncPlayer.git",
     "svn_url": "https://github.com/jerejoensuu/SyncPlayer",
     "homepage": "",
-    "size": 8,
+    "size": 155,
     "stargazers_count": 0,
     "watchers_count": 0,
     "language": "Python",
@@ -679,7 +679,7 @@
       "pull": true
     },
     "thumbnail": "images/blank-thumbnail.jpg",
-    "readme_summary": ""
+    "readme_summary": "Solo project\n  Responsible for creating all but the syncing of videos"
   },
   {
     "id": 441249193,
