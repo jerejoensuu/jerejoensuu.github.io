@@ -60,7 +60,7 @@ function getEngineBadge(topics) {
 async function fetchProjects() {
     showLoading();
 
-    // wait for 1 second to simulate loading time
+    // Wait for 1 second to simulate loading time
     await new Promise(resolve => setTimeout(resolve, 1000));
 
     try {
@@ -76,7 +76,7 @@ async function fetchProjects() {
         // Filter and sort projects
         const filteredProjects = projects
             .filter(project => !project.archived && !project.fork)
-            .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+            .sort((a, b) => a.priority - b.priority); // Sort by Priority ascending
 
         // Generate HTML for each project
         filteredProjects.forEach(project => {
@@ -85,12 +85,7 @@ async function fetchProjects() {
 
             const projectThumbnail = project.thumbnail || 'images/blank-thumbnail.jpg';
             const engineBadge = getEngineBadge(project.topics || []);
-            const projectSummary = project.readme_summary
-                ? project.readme_summary
-                    .split("\n")
-                    .map(item => `<li>${item.replace("- ", "").trim()}</li>`)
-                    .join("")
-                : "";
+            const projectSummaryHTML = generateSummaryHTML(project.summary);
 
             projectCard.innerHTML = `
                 <a href="${project.html_url}" rel="noopener noreferrer">
@@ -110,9 +105,7 @@ async function fetchProjects() {
                     <a href="${project.html_url}"> <h3>${project.name}</h3> </a>
                     <p>${project.description || 'No description available'}</p>
                     <div class="project-summary">
-                        <ul>
-                            ${projectSummary}
-                        </ul>
+                        ${projectSummaryHTML}
                     </div>
                 </div>
                 <div class="tag-group-2">
@@ -149,6 +142,43 @@ async function fetchProjects() {
         hideLoading();
     }
 }
+
+/**
+ * Helper function to generate HTML for the Summary field
+ * @param {Array} summary - The summary array from portfolio.json
+ * @returns {string} - HTML string representing the summary
+ */
+function generateSummaryHTML(summary) {
+    if (!Array.isArray(summary) || summary.length === 0) {
+        return '<p>No summary available.</p>';
+    }
+
+    let html = '<ul>';
+
+    summary.forEach((item, index) => {
+        if (typeof item === 'string') {
+            // Render as a paragraph
+            html += `<li>${item}</li>`;
+        } else if (typeof item === 'object' && item !== null) {
+            // Iterate over the keys (e.g., "Responsibilities")
+            for (const [key, values] of Object.entries(item)) {
+                html += `<li>${key}</li>`;
+                if (Array.isArray(values)) {
+                    html += `<ul>`;
+                    values.forEach((subItem, subIndex) => {
+                        html += `<li>${subItem}</li>`;
+                    });
+                    html += `</ul>`;
+                }
+            }
+        }
+    });
+
+    html += '</ul>';
+
+    return html;
+}
+
 
 // Clean up function to cancel animation frame when needed
 function cleanup() {

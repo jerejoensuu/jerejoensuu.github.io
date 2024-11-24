@@ -170,12 +170,12 @@ h2 {
     box-shadow: var(--shadow-md);
     text-align: center;
     max-width: 100%;
-    /* Ensure work items don't exceed container */
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-/* Optional: If you want to set a specific width for work items */
-.work-item {
-    width: 100%;
+.work-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
 }
 
 .logo-container {
