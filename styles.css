@@ -179,11 +179,18 @@ h2 {
 }
 
 .logo-container {
-    background-color: #1b1b1b;
-    padding: 10px;
-    border-radius: 12px;
-    width: 100%;
-    margin-bottom: var(--spacing-sm);
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.logo-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
 }
 
 .work-thumbnail {
