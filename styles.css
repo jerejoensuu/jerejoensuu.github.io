@@ -179,8 +179,11 @@ h2 {
 }
 
 .logo-container {
-    width: 150px;
-    height: 150px;
+    background-color: #1b1b1b;
+    padding: 10px;
+    border-radius: 12px;
+    width: 100%;
+    margin-bottom: var(--spacing-sm);
     display: flex;
     align-items: center;
     justify-content: center;
