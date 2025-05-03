@@ -183,6 +183,7 @@ async function fetchRepos() {
                 name: repo.name,
                 html_url: repo.html_url,
                 thumbnail: thumb,
+                description: repo.description,
                 summary: portfolio.Summary,
                 priority: portfolio.Priority,
             };
