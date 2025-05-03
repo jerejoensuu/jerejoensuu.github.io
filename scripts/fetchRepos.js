@@ -170,7 +170,7 @@ async function fetchRepos() {
 
         // Sort and write out
         reposWithDetails.sort((a, b) => a.priority - b.priority);
-        const dataDir = path.join(__dirname, 'data');
+        const dataDir = path.resolve(__dirname, '..', 'data');
         if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir);
         const outputPath = path.join(dataDir, 'repos.json');
 
