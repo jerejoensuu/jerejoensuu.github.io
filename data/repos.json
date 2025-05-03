@@ -3,6 +3,7 @@
     "name": "procedural-animation",
     "html_url": "https://github.com/jerejoensuu/procedural-animation",
     "thumbnail": "https://raw.githubusercontent.com/jerejoensuu/procedural-animation/main/images/AllTogether.gif",
+    "description": "A procedurally animated spider in Unity using inverse kinematics.",
     "summary": [
       "Solo project",
       "Partly ready for outside project usage",
@@ -15,6 +16,7 @@
     "name": "Pookie-Island",
     "html_url": "https://github.com/jerejoensuu/Pookie-Island",
     "thumbnail": "https://raw.githubusercontent.com/jerejoensuu/Pookie-Island/master/images/thumbnail.png",
+    "description": "Small puzzle platformer",
     "summary": [
       "School project",
       "Complete game",
@@ -32,6 +34,7 @@
     "name": "Arachnophobia-demo",
     "html_url": "https://github.com/jerejoensuu/Arachnophobia-demo",
     "thumbnail": "https://raw.githubusercontent.com/jerejoensuu/Arachnophobia-demo/demo/images/Spiders.gif",
+    "description": "Demo for a horror game. Public fork prepared for portfolio purposes only.",
     "summary": [
       "Solo project",
       "UE learning project",
@@ -45,6 +48,7 @@
     "name": "SyncPlayer",
     "html_url": "https://github.com/jerejoensuu/SyncPlayer",
     "thumbnail": "images/blank-thumbnail.jpg",
+    "description": "A tool for automatically syncing two videos based on their soundtracks and playing them together.",
     "summary": [
       "Solo project",
       "Responsible for creating all but the syncing of videos"
@@ -55,6 +59,7 @@
     "name": "Chess",
     "html_url": "https://github.com/jerejoensuu/Chess",
     "thumbnail": "https://raw.githubusercontent.com/jerejoensuu/Chess/master/images/thumbnail.jpg",
+    "description": "Simple chess game with an AI opponent",
     "summary": [
       "School project",
       "Unfinished",
@@ -67,6 +72,7 @@
     "name": "TheBanishment",
     "html_url": "https://github.com/jerejoensuu/TheBanishment",
     "thumbnail": "https://raw.githubusercontent.com/jerejoensuu/TheBanishment/master/images/gif1.gif",
+    "description": "A short horror game experience",
     "summary": [
       "School project",
       "Responsible for most (player movement, environment interactions, level system, etc)"
@@ -77,6 +83,7 @@
     "name": "The-Tainted-Forest",
     "html_url": "https://github.com/jerejoensuu/The-Tainted-Forest",
     "thumbnail": "https://raw.githubusercontent.com/jerejoensuu/The-Tainted-Forest/master/images/banner.gif",
+    "description": "A recreation of the old arcade game, Pang.",
     "summary": [
       "School project",
       "Acted as the unofficial lead programmer, ensuring the code met deadlines.",
