@@ -10,7 +10,12 @@
       "Created creatures adapt to the environment and procedurally place their legs on surfaces",
       "Legs move based on the velocity of the body for natural movement"
     ],
-    "priority": 0
+    "priority": 0,
+    "topics": [
+      "inverse-kinematics",
+      "procedural-animation",
+      "unity3d"
+    ]
   },
   {
     "name": "Pookie-Island",
@@ -28,7 +33,13 @@
         ]
       }
     ],
-    "priority": 10
+    "priority": 10,
+    "topics": [
+      "open-world",
+      "platformer",
+      "puzzle",
+      "unity3d"
+    ]
   },
   {
     "name": "Arachnophobia-demo",
@@ -42,7 +53,12 @@
       "The leg animation and movement code both run on the GPU allowing thousands of spiders to exist in a level",
       "Car driveable"
     ],
-    "priority": 20
+    "priority": 20,
+    "topics": [
+      "horror",
+      "niagara-fx",
+      "unreal-engine-5"
+    ]
   },
   {
     "name": "SyncPlayer",
@@ -53,7 +69,11 @@
       "Solo project",
       "Responsible for creating all but the syncing of videos"
     ],
-    "priority": 30
+    "priority": 30,
+    "topics": [
+      "python",
+      "software-development"
+    ]
   },
   {
     "name": "Chess",
@@ -66,7 +86,8 @@
       "Responsible for all code, leveraging online resources like Chessprogramming.org",
       "AI functionality implemented but left unpolished due to time constraints"
     ],
-    "priority": 35
+    "priority": 35,
+    "topics": []
   },
   {
     "name": "TheBanishment",
@@ -77,7 +98,12 @@
       "School project",
       "Responsible for most (player movement, environment interactions, level system, etc)"
     ],
-    "priority": 40
+    "priority": 40,
+    "topics": [
+      "audio-occlusion",
+      "fmod",
+      "unity3d"
+    ]
   },
   {
     "name": "The-Tainted-Forest",
@@ -99,6 +125,9 @@
         ]
       }
     ],
-    "priority": 50
+    "priority": 50,
+    "topics": [
+      "unity2d"
+    ]
   }
 ]
