@@ -87,7 +87,9 @@
       "AI functionality implemented but left unpolished due to time constraints"
     ],
     "priority": 35,
-    "topics": []
+    "topics": [
+      "unity2d"
+    ]
   },
   {
     "name": "TheBanishment",
