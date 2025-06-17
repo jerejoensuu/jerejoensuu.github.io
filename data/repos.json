@@ -61,21 +61,6 @@
     ]
   },
   {
-    "name": "SyncPlayer",
-    "html_url": "https://github.com/jerejoensuu/SyncPlayer",
-    "thumbnail": "images/blank-thumbnail.jpg",
-    "description": "A tool for automatically syncing two videos based on their soundtracks and playing them together.",
-    "summary": [
-      "Solo project",
-      "Responsible for creating all but the syncing of videos"
-    ],
-    "priority": 30,
-    "topics": [
-      "python",
-      "software-development"
-    ]
-  },
-  {
     "name": "Chess",
     "html_url": "https://github.com/jerejoensuu/Chess",
     "thumbnail": "https://raw.githubusercontent.com/jerejoensuu/Chess/master/images/thumbnail.jpg",
