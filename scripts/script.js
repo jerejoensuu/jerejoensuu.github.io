@@ -2,92 +2,152 @@
 let lastUpdateTime = null;
 let animationFrameId = null;
 
-// Utility function to format time difference with more precise timing
+// -------- Config-driven content --------
+
+/**
+ * Load site config (skills, learning, work experience)
+ * from /data/site.json.
+ */
+async function loadSiteConfig() {
+  const res = await fetch("data/site.json", { cache: "no-cache" });
+  if (!res.ok) throw new Error(`Failed to load site.json: ${res.status}`);
+  return res.json();
+}
+
+/**
+ * Render tags into a container.
+ * Tag levels map to your existing CSS classes:
+ *   1 -> tag1, 2 -> tag2, 3 -> tag3 (fallback tag1)
+ */
+function renderTags(containerId, tags) {
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  el.innerHTML = "";
+
+  (tags || []).forEach((tag) => {
+    const level = typeof tag.level === "number" ? tag.level : 1;
+    const cls = level === 2 ? "tag2" : level === 3 ? "tag3" : "tag1";
+    const span = document.createElement("span");
+    span.className = cls;
+    span.textContent = tag.label ?? String(tag);
+    el.appendChild(span);
+    // spacing is handled by your CSS; if needed add small gap:
+    // el.appendChild(document.createTextNode(' '));
+  });
+}
+
+/**
+ * Render work experience cards into #work-grid.
+ * Expects:
+ * { company, role, years, logo, logoAlt, bullets[] }
+ */
+function renderWork(workItems) {
+  const grid = document.getElementById("work-grid");
+  if (!grid) return;
+  grid.innerHTML = "";
+
+  (workItems || []).forEach((item) => {
+    const card = document.createElement("div");
+    card.className = "work-item";
+
+    const logoHtml = item.logo
+      ? `
+                <div class="logo-container">
+                    <img src="${item.logo}" alt="${
+          item.logoAlt || item.company + " Logo"
+        }" class="work-thumbnail">
+                </div>`
+      : "";
+
+    const bulletsHtml =
+      Array.isArray(item.bullets) && item.bullets.length
+        ? `<ul>${item.bullets.map((b) => `<li>${b}</li>`).join("")}</ul>`
+        : "<ul></ul>";
+
+    card.innerHTML = `
+            ${logoHtml}
+            <h3>${item.company} - ${item.role}</h3>
+            <p>${item.years}</p>
+            ${bulletsHtml}
+        `;
+    grid.appendChild(card);
+  });
+}
+
+// -------- Existing utilities / projects --------
+
 function formatTimeDifference(startDate) {
-    const now = new Date();
-    const diff = Math.floor((now - startDate) / 1000); // difference in seconds
-
-    if (diff < 60) return `${diff} seconds ago`;
-    if (diff < 3600) return `${Math.floor(diff / 60)} minutes ago`;
-    if (diff < 86400) return `${Math.floor(diff / 3600)} hours ago`;
-    return `${Math.floor(diff / 86400)} days ago`;
+  const now = new Date();
+  const diff = Math.floor((now - startDate) / 1000);
+  if (diff < 60) return `${diff} seconds ago`;
+  if (diff < 3600) return `${Math.floor(diff / 60)} minutes ago`;
+  if (diff < 86400) return `${Math.floor(diff / 3600)} hours ago`;
+  return `${Math.floor(diff / 86400)} days ago`;
 }
 
-// Update the "last updated" text using requestAnimationFrame
 function updateTimer() {
-    if (!lastUpdateTime) return;
-
-    const lastUpdatedElement = document.getElementById('last-updated');
-    if (lastUpdatedElement) {
-        lastUpdatedElement.textContent = `Last updated: ${formatTimeDifference(lastUpdateTime)}`;
-    }
-
-    // Request the next frame
-    animationFrameId = requestAnimationFrame(updateTimer);
+  if (!lastUpdateTime) return;
+  const lastUpdatedElement = document.getElementById("last-updated");
+  if (lastUpdatedElement) {
+    lastUpdatedElement.textContent = `Last updated: ${formatTimeDifference(
+      lastUpdateTime
+    )}`;
+  }
+  animationFrameId = requestAnimationFrame(updateTimer);
 }
 
-// Show loading state
 function showLoading() {
-    const loadingElement = document.getElementById('projects-loading');
-    if (loadingElement) loadingElement.style.display = 'block';
+  const loadingElement = document.getElementById("projects-loading");
+  if (loadingElement) loadingElement.style.display = "block";
 }
 
-// Hide loading state
 function hideLoading() {
-    const loadingElement = document.getElementById('projects-loading');
-    if (loadingElement) loadingElement.style.display = 'none';
+  const loadingElement = document.getElementById("projects-loading");
+  if (loadingElement) loadingElement.style.display = "none";
 }
 
 function getEngineBadge(topics) {
-    // Check project topics for engine/language
-    if (topics.some(topic => topic.includes('unity'))) {
-        return `<div class="engine-badge">
+  if ((topics || []).some((topic) => topic.includes("unity"))) {
+    return `<div class="engine-badge">
             <img src="images/logos/unity-logo.svg" alt="Unity Project">
         </div>`;
-    } else if (topics.some(topic => topic.includes('unreal'))) {
-        return `<div class="engine-badge">
+  } else if ((topics || []).some((topic) => topic.includes("unreal"))) {
+    return `<div class="engine-badge">
             <img src="images/logos/unreal-logo.svg" alt="Unreal Engine Project">
         </div>`;
-    } else if (topics.includes('python')) {
-        return `<div class="engine-badge">
+  } else if ((topics || []).includes("python")) {
+    return `<div class="engine-badge">
             <img src="images/logos/python-logo.svg" alt="Python Project">
         </div>`;
-    }
-    return ''; // Return empty string if no matching engine/language found
+  }
+  return "";
 }
 
-// Main function to fetch and display projects
 async function fetchProjects() {
-    showLoading();
+  showLoading();
+  // Small delay for nicer spinner; optional
+  await new Promise((resolve) => setTimeout(resolve, 1000));
 
-    // Wait for 1 second to simulate loading time
-    await new Promise(resolve => setTimeout(resolve, 1000));
+  try {
+    const response = await fetch("data/repos.json");
+    const projects = await response.json();
+    const projectsGrid = document.getElementById("projects-grid");
+    if (projectsGrid) projectsGrid.innerHTML = "";
 
-    try {
-        const response = await fetch('data/repos.json');
-        const projects = await response.json();
-        const projectsGrid = document.getElementById('projects-grid');
+    const filteredProjects = projects
+      .filter((project) => !project.archived && !project.fork)
+      .sort((a, b) => a.priority - b.priority);
 
-        // Clear existing content
-        if (projectsGrid) {
-            projectsGrid.innerHTML = '';
-        }
+    filteredProjects.forEach((project) => {
+      const projectCard = document.createElement("div");
+      projectCard.classList.add("project-item");
 
-        // Filter and sort projects
-        const filteredProjects = projects
-            .filter(project => !project.archived && !project.fork)
-            .sort((a, b) => a.priority - b.priority); // Sort by Priority ascending
+      const projectThumbnail =
+        project.thumbnail || "images/blank-thumbnail.jpg";
+      const engineBadge = getEngineBadge(project.topics || []);
+      const projectSummaryHTML = generateSummaryHTML(project.summary);
 
-        // Generate HTML for each project
-        filteredProjects.forEach(project => {
-            const projectCard = document.createElement('div');
-            projectCard.classList.add('project-item');
-
-            const projectThumbnail = project.thumbnail || 'images/blank-thumbnail.jpg';
-            const engineBadge = getEngineBadge(project.topics || []);
-            const projectSummaryHTML = generateSummaryHTML(project.summary);
-
-            projectCard.innerHTML = `
+      projectCard.innerHTML = `
                 <a href="${project.html_url}" rel="noopener noreferrer">
                     <div class="project-thumbnail-container">
                         ${engineBadge}
@@ -103,139 +163,117 @@ async function fetchProjects() {
                 </a>
                 <div class="project-details">
                     <a href="${project.html_url}"> <h3>${project.name}</h3> </a>
-                    <p>${project.description || 'No description available'}</p>
+                    <p>${project.description || "No description available"}</p>
                     <div class="project-summary">
                         ${projectSummaryHTML}
                     </div>
                 </div>
                 <div class="tag-group-2">
-                    ${project.topics ? project.topics.map(topic =>
-                `<span class="tag3">${topic}</span>`
-            ).join('') : ''}
+                    ${(project.topics || [])
+                      .map((topic) => `<span class="tag3">${topic}</span>`)
+                      .join("")}
                 </div>
             `;
+      projectsGrid.appendChild(projectCard);
+    });
 
-            projectsGrid.appendChild(projectCard);
-        });
-
-        // Update the last update timestamp with current time
-        lastUpdateTime = new Date();
-
-        // Cancel any existing animation frame
-        if (animationFrameId) {
-            cancelAnimationFrame(animationFrameId);
-        }
-        // Start the timer update
-        updateTimer();
-
-    } catch (error) {
-        console.error('Error fetching projects:', error);
-        const projectsGrid = document.getElementById('projects-grid');
-        if (projectsGrid) {
-            projectsGrid.innerHTML = `
+    lastUpdateTime = new Date();
+    if (animationFrameId) cancelAnimationFrame(animationFrameId);
+    updateTimer();
+  } catch (error) {
+    console.error("Error fetching projects:", error);
+    const projectsGrid = document.getElementById("projects-grid");
+    if (projectsGrid) {
+      projectsGrid.innerHTML = `
                 <div class="error-message">
                     Unable to load projects. Please try again later.
                 </div>
             `;
-        }
-    } finally {
-        hideLoading();
     }
+  } finally {
+    hideLoading();
+  }
 }
 
-/**
- * Helper function to generate HTML for the Summary field
- * @param {Array} summary - The summary array from portfolio.json
- * @returns {string} - HTML string representing the summary
- */
 function generateSummaryHTML(summary) {
-    if (!Array.isArray(summary) || summary.length === 0) {
-        return '<p>No summary available.</p>';
-    }
-
-    let html = '<ul>';
-
-    summary.forEach((item, index) => {
-        if (typeof item === 'string') {
-            // Render as a paragraph
-            html += `<li>${item}</li>`;
-        } else if (typeof item === 'object' && item !== null) {
-            // Iterate over the keys (e.g., "Responsibilities")
-            for (const [key, values] of Object.entries(item)) {
-                html += `<li>${key}</li>`;
-                if (Array.isArray(values)) {
-                    html += `<ul>`;
-                    values.forEach((subItem, subIndex) => {
-                        html += `<li>${subItem}</li>`;
-                    });
-                    html += `</ul>`;
-                }
-            }
+  if (!Array.isArray(summary) || summary.length === 0) {
+    return "<p>No summary available.</p>";
+  }
+  let html = "<ul>";
+  summary.forEach((item) => {
+    if (typeof item === "string") {
+      html += `<li>${item}</li>`;
+    } else if (typeof item === "object" && item !== null) {
+      for (const [key, values] of Object.entries(item)) {
+        html += `<li>${key}</li>`;
+        if (Array.isArray(values)) {
+          html += `<ul>`;
+          values.forEach((subItem) => {
+            html += `<li>${subItem}</li>`;
+          });
+          html += `</ul>`;
         }
-    });
-
-    html += '</ul>';
-
-    return html;
+      }
+    }
+  });
+  html += "</ul>";
+  return html;
 }
 
-
-// Clean up function to cancel animation frame when needed
 function cleanup() {
-    if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
-        animationFrameId = null;
-    }
+  if (animationFrameId) {
+    cancelAnimationFrame(animationFrameId);
+    animationFrameId = null;
+  }
 }
 
-// Initialize when the page loads
-document.addEventListener('DOMContentLoaded', () => {
-    fetchProjects();
+// -------- Init --------
+document.addEventListener("DOMContentLoaded", async () => {
+  // 1) Config-driven sections
+  try {
+    const config = await loadSiteConfig();
+    renderTags("skills-tags", config.skills);
+    renderTags("learning-tags", config.learning);
+    renderWork(config.workExperience);
+  } catch (e) {
+    console.error(e);
+    // Graceful fallback (leave containers empty)
+  }
 
-    // Refresh projects every 5 minutes
-    setInterval(fetchProjects, 300000);
+  // 2) Projects (GitHub)
+  fetchProjects();
+  setInterval(fetchProjects, 300000); // refresh every 5 min
 
-    const stickyHeader = document.querySelector('.sticky-header');
-    const mainHeader = document.querySelector('.main-header');
-    const body = document.body;
-    let lastScroll = 0;
+  const stickyHeader = document.querySelector(".sticky-header");
+  const mainHeader = document.querySelector(".main-header"); // retained for future use
+  let lastScroll = 0;
 
-    window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-
-        // Show/hide sticky header based on scroll position and direction
-        if (currentScroll > 200) { // Show after scrolling 200px
-            stickyHeader.classList.add('visible');
-            // body.classList.add('header-fixed');
-        } else {
-            stickyHeader.classList.remove('visible');
-            // body.classList.remove('header-fixed');
-        }
-
-        lastScroll = currentScroll;
-    });
-});
-
-// Clean up when page is hidden/closed
-document.addEventListener('visibilitychange', () => {
-    if (document.hidden) {
-        cleanup();
-    } else {
-        if (!animationFrameId) {
-            updateTimer();
-        }
+  window.addEventListener("scroll", () => {
+    const currentScroll = window.pageYOffset;
+    if (stickyHeader) {
+      if (currentScroll > 200) stickyHeader.classList.add("visible");
+      else stickyHeader.classList.remove("visible");
     }
+    lastScroll = currentScroll;
+  });
 });
 
-// Cleanup on page unload
-window.addEventListener('beforeunload', cleanup);
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    cleanup();
+  } else {
+    if (!animationFrameId) {
+      updateTimer();
+    }
+  }
+});
 
-// Optional: Add smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-            behavior: 'smooth'
-        });
-    });
+window.addEventListener("beforeunload", cleanup);
+
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute("href"));
+    if (target) target.scrollIntoView({ behavior: "smooth" });
+  });
 });

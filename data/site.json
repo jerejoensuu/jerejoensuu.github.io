@@ -1,0 +1,58 @@
+{
+  "skills": [
+    { "label": "C#", "level": 1 },
+    { "label": "Unity", "level": 1 },
+    { "label": "Git", "level": 1 },
+    { "label": "OOP", "level": 1 },
+    { "label": "AI", "level": 1 },
+    { "label": "FMOD", "level": 2 },
+    { "label": "Java", "level": 2 },
+    { "label": "Blender", "level": 2 },
+    { "label": "Android", "level": 2 }
+  ],
+  "learning": [
+    { "label": "Javascript", "level": 1 },
+    { "label": "Python", "level": 1 }
+  ],
+  "workExperience": [
+    {
+      "company": "Kyy Games",
+      "role": "Programmer",
+      "years": "2025 - Present",
+      "logo": "images/kyylogo.png",
+      "logoAlt": "Kyy Games Thumbnail",
+      "bullets": [
+        "Modernized and optimized key gameplay, UI, and data systems within a large live Unity project.",
+        "Improved performance, memory efficiency, and stability across core runtime and UI workflows.",
+        "Expanded analytics, backend integration, and build automation to support multi-platform deployment.",
+        "Created and refined in-editor tools to streamline developer workflows and debugging.",
+        "Consistently identified, diagnosed, and fixed bugs across a wide range of legacy and new systems."
+      ]
+    },
+    {
+      "company": "Skydome Entertainment",
+      "role": "Programmer",
+      "years": "2024 - 2025",
+      "logo": "images/skydomelogo.webp",
+      "logoAlt": "Skydome Entertainment Thumbnail",
+      "bullets": [
+        "Developed custom editor tools for enhanced scene management and improved workflow.",
+        "Worked on rendering controls, save system optimization, object tracking solutions, and cutscene integration.",
+        "Focused on optimizing project performance and efficiency.",
+        "Implemented efficient methods for managing object states and project-specific tools."
+      ]
+    },
+    {
+      "company": "Supremacy Games Oy",
+      "role": "Programmer",
+      "years": "2022 - 2024",
+      "logo": "images/apex_kings_nft_logo (1).png",
+      "logoAlt": "Supremacy Games Oy Thumbnail",
+      "bullets": [
+        "Worked on the client side of Apex Kings, a web3 racing game.",
+        "Played a major role in creating the main gameplay and UI structure.",
+        "Contributed to some of the game's design aspects."
+      ]
+    }
+  ]
+}

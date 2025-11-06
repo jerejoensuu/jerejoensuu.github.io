@@ -1,158 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Jere Joensuu - Game Developer Portfolio">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Jere Joensuu - Game Developer Portfolio"
+    />
     <title>Jere Joensuu - Game Developer Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="scripts/script.js"></script>
-</head>
+    <link rel="stylesheet" href="styles/styles.css" />
+    <!-- Defer so DOM is ready before script runs -->
+    <script defer src="scripts/script.js"></script>
+  </head>
 
-<body>
-    <header>
-        <div class="container">
-            <h1>Jere Joensuu</h1>
-            <p>Game Developer</p>
-        </div>
+  <body>
+    <header class="main-header">
+      <div class="container">
+        <h1>Jere Joensuu</h1>
+        <p>Game Developer</p>
+      </div>
     </header>
 
     <section id="about" class="container">
-        <h2>About Me</h2>
-        <div class="about-content">
-            <img src="images/headshot_249px.jpg" alt="Jere Joensuu Headshot" class="headshot">
-            <div class="about-text">
-                <p>I'm a passionate game developer specializing in <strong>C#</strong> and <strong>Unity</strong>.
-                    Always eager
-                    to learn more about game design and development. I have worked on various projects involving custom
-                    tools, gameplay mechanics, and more.</p>
-                <p>
-                    <strong>Degree:</strong> Bachelor of Business Administration, Business Information Systems<br>
-                    <strong>Institution:</strong> Tampere University of Applied Sciences (TAMK)<br>
-                    <strong>Specialization:</strong> Game Development and Design through the TAMK Games Academy
-                </p>
-            </div>
+      <h2>About Me</h2>
+      <div class="about-content">
+        <img
+          src="images/headshot_249px.jpg"
+          alt="Jere Joensuu Headshot"
+          class="headshot"
+        />
+        <div class="about-text">
+          <p>
+            I'm a passionate game developer specializing in
+            <strong>C#</strong> and <strong>Unity</strong>. Always eager to
+            learn more about game design and development. I have worked on
+            various projects involving custom tools, gameplay mechanics, and
+            more.
+          </p>
+          <p>
+            <strong>Degree:</strong> Bachelor of Business Administration,
+            Business Information Systems<br />
+            <strong>Institution:</strong> Tampere University of Applied Sciences
+            (TAMK)<br />
+            <strong>Specialization:</strong> Game Development and Design through
+            the TAMK Games Academy
+          </p>
         </div>
+      </div>
     </section>
 
     <section id="skills" class="container">
-        <h2>Skills & Learning</h2>
-        <div class="tag-group-1">
-            <p><strong>Skills:</strong>
-                <span class="tag1">C#</span>
-                <span class="tag1">Unity</span>
-                <span class="tag1">Git</span>
-                <span class="tag1">OOP</span>
-                <span class="tag1">AI</span>
-                <span class="tag2">FMOD</span>
-                <span class="tag2">Java</span>
-                <span class="tag2">Blender</span>
-                <span class="tag2">Android</span>
-                <!-- Add more skills as needed -->
-            </p>
-            <p><strong>Currently Learning:</strong>
-                <span class="tag1">Unreal Engine</span>
-                <span class="tag1">Python</span>
-                <!-- Add more learning tags as needed -->
-            </p>
-        </div>
+      <h2>Skills & Learning</h2>
+      <div class="tag-group-1">
+        <p><strong>Skills:</strong> <span id="skills-tags"></span></p>
+        <p>
+          <strong>Currently Learning:</strong> <span id="learning-tags"></span>
+        </p>
+      </div>
     </section>
 
-    <br>
-    <hr class="divider">
+    <br />
+    <hr class="divider" />
 
     <!-- WORK -->
     <section id="work" class="container">
-        <h2>Work Experience</h2>
-        <div class="work-grid">
-            <div class="work-item">
-                <div class="logo-container">
-                    <img src="images/kyylogo.png" alt="Kyy Games Thumbnail" class="work-thumbnail">
-                </div>
-                <h3>Kyy Games - Programmer</h3>
-                <p>2025 - Present</p>
-                <ul> </ul>
-            </div>
-            <div class="work-item">
-                <div class="logo-container">
-                    <img src="images/skydomelogo.webp" alt="Skydome Entertainment Thumbnail" class="work-thumbnail">
-                </div>
-                <h3>Skydome Entertainment - Programmer</h3>
-                <p>2024 - 2025</p>
-                <ul>
-                    <li>Developed <strong>custom editor tools</strong> for enhanced scene management and improved
-                        workflow.</li>
-                    <li>Worked on rendering controls, save system optimization, object tracking solutions, and cutscene
-                        integration.</li>
-                    <li>Focused on optimizing project <strong>performance and efficiency</strong>.</li>
-                    <li>Implemented efficient methods for managing object states and project-specific tools.</li>
-                </ul>
-            </div>
-            <div class="work-item">
-                <img src="images/apex_kings_nft_logo (1).png" alt="Supremacy Games Oy Thumbnail" class="work-thumbnail">
-                <h3> Supremacy Games Oy - Programmer</h3>
-                <p>2022 - 2024</p>
-                <ul>
-                    <li>Worked on the client-side of Apex Kings, a web3 racing game.</li>
-                    <li>Played a major role in creating the main <strong>gameplay and UI structure</strong>.</li>
-                    <li>Contributed to some of the game's design aspects.</li>
-                </ul>
-            </div>
-        </div>
+      <h2>Work Experience</h2>
+      <div id="work-grid" class="work-grid"></div>
     </section>
-
 
     <!-- GITHUB PROJECTS -->
     <div id="projects" class="section container">
-        <div class="projects-header">
-            <h2>Projects on GitHub</h2>
-            <span id="last-updated" class="last-updated"></span>
-        </div>
-        <div id="projects-loading" class="loading-spinner" style="display: none;"></div>
-        <div id="projects-grid" class="projects-grid"></div>
+      <div class="projects-header">
+        <h2>Projects on GitHub</h2>
+        <span id="last-updated" class="last-updated"></span>
+      </div>
+      <div
+        id="projects-loading"
+        class="loading-spinner"
+        style="display: none"
+      ></div>
+      <div id="projects-grid" class="projects-grid"></div>
     </div>
 
     <section id="contact" class="container">
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:jerepetteri.joensuu@gmail.com">jerepetteri.joensuu@gmail.com</a></p>
-        <p>LinkedIn: <a href="https://www.linkedin.com/in/jerejoensuu/" target="_blank">linkedin.com/in/jerejoensuu</a>
-        </p>
-        <p>GitHub: <a href="https://github.com/jerejoensuu" target="_blank">github.com/jerejoensuu</a></p>
+      <h2>Contact</h2>
+      <p>
+        Email:
+        <a href="mailto:jerepetteri.joensuu@gmail.com"
+          >jerepetteri.joensuu@gmail.com</a
+        >
+      </p>
+      <p>
+        LinkedIn:
+        <a href="https://www.linkedin.com/in/jerejoensuu/" target="_blank"
+          >linkedin.com/in/jerejoensuu</a
+        >
+      </p>
+      <p>
+        GitHub:
+        <a href="https://github.com/jerejoensuu" target="_blank"
+          >github.com/jerejoensuu</a
+        >
+      </p>
     </section>
 
     <footer class="container">
-        <p>© 2024 Jere Joensuu</p>
+      <p>© 2024 Jere Joensuu</p>
     </footer>
-</body>
+  </body>
 
-<!-- Add this right after the opening body tag -->
-<header class="sticky-header">
+  <!-- Sticky header kept as you had it -->
+  <header class="sticky-header">
     <div class="name">Jere Joensuu</div>
     <div class="socials">
-        <a href="https://github.com/jerejoensuu" target="_blank" rel="noopener noreferrer">
-            <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path
-                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-            </svg>
-        </a>
-        <a href="https://www.linkedin.com/in/jerejoensuu/" target="_blank" rel="noopener noreferrer">
-            <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-                <rect x="2" y="9" width="4" height="12" />
-                <circle cx="4" cy="4" r="2" />
-            </svg>
-        </a>
-        <a href="mailto:jerepetteri.joensuu@gmail.com">
-            <svg class="social-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                <polyline points="22,6 12,13 2,6" />
-            </svg>
-        </a>
+      <a
+        href="https://github.com/jerejoensuu"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <svg
+          class="social-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+          />
+        </svg>
+      </a>
+      <a
+        href="https://www.linkedin.com/in/jerejoensuu/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <svg
+          class="social-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+          />
+          <rect x="2" y="9" width="4" height="12" />
+          <circle cx="4" cy="4" r="2" />
+        </svg>
+      </a>
+      <a href="mailto:jerepetteri.joensuu@gmail.com">
+        <svg
+          class="social-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+          />
+          <polyline points="22,6 12,13 2,6" />
+        </svg>
+      </a>
     </div>
-</header>
-
+  </header>
 </html>
