@@ -66,7 +66,7 @@ function renderWork(workItems) {
 
     card.innerHTML = `
             ${logoHtml}
-            <h3>${item.company} - ${item.role}</h3>
+            <h3>${item.company}${item.role ? ` - ${item.role}` : ''}</h3>
             <p>${item.years}</p>
             ${bulletsHtml}
         `;
@@ -232,7 +232,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   // 1) Config-driven sections
   try {
     const config = await loadSiteConfig();
-    renderTags("skills-tags", config.skills);
+    renderTags("core-tags", config.core);
+    renderTags("systems-tags", config.systemsTools);
     renderTags("learning-tags", config.learning);
     renderWork(config.workExperience);
   } catch (e) {
