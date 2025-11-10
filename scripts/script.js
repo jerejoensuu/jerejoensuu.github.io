@@ -16,8 +16,7 @@ async function loadSiteConfig() {
 
 /**
  * Render tags into a container.
- * Tag levels map to your existing CSS classes:
- *   1 -> tag1, 2 -> tag2, 3 -> tag3 (fallback tag1)
+ * Tag prioritys map to tag1, tag2, tag3 (fallback tag1)
  */
 function renderTags(containerId, tags) {
   const el = document.getElementById(containerId);
@@ -25,14 +24,12 @@ function renderTags(containerId, tags) {
   el.innerHTML = "";
 
   (tags || []).forEach((tag) => {
-    const level = typeof tag.level === "number" ? tag.level : 1;
-    const cls = level === 2 ? "tag2" : level === 3 ? "tag3" : "tag1";
+    const priority = typeof tag.priority === "number" ? tag.priority : 1;
+    const cls = priority === 2 ? "tag2" : priority === 3 ? "tag3" : "tag1";
     const span = document.createElement("span");
     span.className = cls;
     span.textContent = tag.label ?? String(tag);
     el.appendChild(span);
-    // spacing is handled by your CSS; if needed add small gap:
-    // el.appendChild(document.createTextNode(' '));
   });
 }
 

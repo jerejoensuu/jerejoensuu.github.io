@@ -1,21 +1,21 @@
   {
   "core": [
-    { "label": "C#", "level": 1 },
-    { "label": "Unity", "level": 1 },
-    { "label": "Gameplay Programming", "level": 1 },
-    { "label": "UI Programming", "level": 1 },
-    { "label": "Editor Scripting", "level": 1 }
+    { "label": "C#", "priority": 1 },
+    { "label": "Unity", "priority": 1 },
+    { "label": "Gameplay Programming", "priority": 1 },
+    { "label": "UI Programming", "priority": 1 },
+    { "label": "Editor Scripting", "priority": 1 }
   ],
   "systemsTools": [
-    { "label": "Optimization", "level": 1 },
-    { "label": "LLM Workflows", "level": 1 },
-    { "label": "Multiplayer", "level": 2 },
-    { "label": "Backend Integration", "level": 2 },
-    { "label": "FMOD", "level": 2 }
+    { "label": "Optimization", "priority": 1 },
+    { "label": "LLM Workflows", "priority": 1 },
+    { "label": "Multiplayer", "priority": 2 },
+    { "label": "Backend Integration", "priority": 2 },
+    { "label": "FMOD", "priority": 2 }
   ],
   "learning": [
-    { "label": "Python", "level": 1 },
-    { "label": "TypeScript", "level": 2 }
+    { "label": "Python", "priority": 1 },
+    { "label": "TypeScript", "priority": 2 }
   ],
   "workExperience": [
     {
