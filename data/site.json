@@ -1,4 +1,4 @@
-  {
+{
   "core": [
     { "label": "C#", "priority": 1 },
     { "label": "Unity", "priority": 1 },

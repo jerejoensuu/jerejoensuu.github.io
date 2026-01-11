@@ -63,7 +63,7 @@ function renderWork(workItems) {
 
     card.innerHTML = `
             ${logoHtml}
-            <h3>${item.company}${item.role ? ` - ${item.role}` : ''}</h3>
+            <h3>${item.company}${item.role ? ` - ${item.role}` : ""}</h3>
             <p>${item.years}</p>
             ${bulletsHtml}
         `;
