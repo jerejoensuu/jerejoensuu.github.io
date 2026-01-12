@@ -2,6 +2,53 @@
 let lastUpdateTime = null;
 let animationFrameId = null;
 
+// -------- Project type count summary config --------
+
+// Which high level buckets exist and how they behave in the header summary
+const CATEGORY_CONFIG = {
+  unity: {
+    label: "Unity",
+    icon: "images/logos/unity-logo.svg",
+    // Higher wins on ties
+    priorityWeight: 3,
+  },
+  unreal: {
+    label: "Unreal",
+    icon: "images/logos/unreal-logo.svg",
+    priorityWeight: 2,
+  },
+  python: {
+    label: "Python",
+    icon: "images/logos/python-logo.svg",
+    priorityWeight: 2,
+  },
+  mod: {
+    label: "Mods",
+    icon: "images/logos/mod-icon.svg",
+    priorityWeight: 1,
+  },
+  js: {
+    label: "JavaScript",
+    icon: "images/logos/js-icon.svg",
+    priorityWeight: 1,
+  },
+  other: {
+    label: "Other",
+    icon: "images/logos/other-icon.svg",
+    priorityWeight: 0,
+    isOtherBucket: true,
+  },
+};
+
+// How the header summary should behave
+const TYPE_COUNT_DISPLAY_CONFIG = {
+  maxVisibleCategories: 3, // change to 2, 4, etc
+  // These will be included if they exist, before filling with others
+  alwaysInclude: ["unity", "unreal", "python"],
+  // If true, any categories not visible will be collapsed into the "other" bucket
+  collapseRemainderIntoOther: true,
+};
+
 // -------- Config-driven content --------
 
 /**
@@ -71,6 +118,139 @@ function renderWork(workItems) {
   });
 }
 
+// -------- Project type count summary helpers --------
+
+function getProjectCategory(project) {
+  const topics = project.topics || [];
+
+  if (topics.some((t) => t.includes("unity"))) return "unity";
+  if (topics.some((t) => t.includes("unreal"))) return "unreal";
+  if (topics.some((t) => t.includes("python"))) return "python";
+  if (topics.some((t) => t.includes("minecraft") || t.includes("mod")))
+    return "mod";
+  if (topics.some((t) => t.includes("javascript") || t.includes("js")))
+    return "js";
+
+  return "other";
+}
+
+function computeCategorySummary(projects) {
+  const counts = {};
+
+  // Count all categories
+  (projects || []).forEach((project) => {
+    const cat = getProjectCategory(project);
+    if (!counts[cat]) counts[cat] = 0;
+    counts[cat] += 1;
+  });
+
+  const entries = Object.entries(counts);
+  if (!entries.length) return { visible: [], otherCount: 0 };
+
+  // Turn counts into an array with config
+  const all = entries.map(([name, count]) => {
+    const cfg = CATEGORY_CONFIG[name] || {};
+    return {
+      name,
+      count,
+      label: cfg.label || name,
+      icon: cfg.icon || "",
+      priorityWeight: cfg.priorityWeight || 0,
+      isOtherBucket: !!cfg.isOtherBucket,
+    };
+  });
+
+  // Separate special "other" bucket, if present
+  let otherBucket = all.find((c) => c.isOtherBucket);
+  let normalBuckets = all.filter((c) => !c.isOtherBucket);
+
+  const cfg = TYPE_COUNT_DISPLAY_CONFIG;
+  const visible = [];
+  const remaining = [...normalBuckets];
+
+  // Helper: take by name from remaining into visible
+  function take(name) {
+    const idx = remaining.findIndex((c) => c.name === name && c.count > 0);
+    if (idx === -1) return;
+    visible.push(remaining[idx]);
+    remaining.splice(idx, 1);
+  }
+
+  // Always include forced categories, in the order defined
+  (cfg.alwaysInclude || []).forEach((name) => {
+    if (visible.length >= cfg.maxVisibleCategories) return;
+    take(name);
+  });
+
+  // Sort remaining by count then priorityWeight then name
+  remaining.sort((a, b) => {
+    if (b.count !== a.count) return b.count - a.count;
+    if (b.priorityWeight !== a.priorityWeight) {
+      return b.priorityWeight - a.priorityWeight;
+    }
+    return a.name.localeCompare(b.name);
+  });
+
+  // Fill remaining slots with best scoring categories
+  while (visible.length < cfg.maxVisibleCategories && remaining.length) {
+    visible.push(remaining.shift());
+  }
+
+  // Compute remainder count for "other"
+  let otherCount = 0;
+
+  if (cfg.collapseRemainderIntoOther) {
+    const visibleNames = new Set(visible.map((v) => v.name));
+
+    all.forEach((c) => {
+      if (!visibleNames.has(c.name) && !c.isOtherBucket) {
+        otherCount += c.count;
+      }
+    });
+
+    if (otherBucket) {
+      otherCount += otherBucket.count;
+    }
+  } else if (otherBucket) {
+    otherCount = otherBucket.count;
+  }
+
+  return { visible, otherCount };
+}
+
+function renderTypeCountIcons(visibleCategories, otherCount) {
+  const container = document.getElementById("project-count-icons");
+  if (!container) return;
+
+  const parts = (visibleCategories || []).map((cat) => {
+    const iconHtml = cat.icon
+      ? `<img src="${cat.icon}" alt="${cat.label}" class="project-count-icon" />`
+      : "";
+    return `
+      <span class="project-count-item">
+        ${iconHtml}
+        <span class="project-count">${cat.count}</span>
+      </span>
+    `;
+  });
+
+  if (otherCount > 0) {
+    const otherCfg = CATEGORY_CONFIG.other || { label: "Other" };
+    const otherIcon = otherCfg.icon
+      ? `<img src="${otherCfg.icon}" alt="${otherCfg.label}" class="project-count-icon" />`
+      : `<span class="project-count-other-icon">+</span>`;
+
+    parts.push(`
+      <span class="project-count-item">
+        ${otherIcon}
+        <span class="project-count">${otherCount}</span>
+      </span>
+    `);
+  }
+
+  container.innerHTML = parts.join("");
+}
+
 // -------- Existing utilities / projects --------
 
 function formatTimeDifference(startDate) {
@@ -134,6 +314,10 @@ async function fetchProjects() {
     const filteredProjects = projects
       .filter((project) => !project.archived && !project.fork)
       .sort((a, b) => a.priority - b.priority);
+
+    // Update header project type count summary
+    const summary = computeCategorySummary(filteredProjects);
+    renderTypeCountIcons(summary.visible, summary.otherCount);
 
     filteredProjects.forEach((project) => {
       const projectCard = document.createElement("div");

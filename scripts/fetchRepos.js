@@ -209,6 +209,8 @@ async function fetchRepos() {
           summary: portfolio.Summary,
           priority: portfolio.Priority,
           topics: repo.topics,
+          archived: repo.archived,
+          fork: repo.fork,
         };
       })
     );
