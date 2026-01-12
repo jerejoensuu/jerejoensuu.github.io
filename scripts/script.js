@@ -2,6 +2,20 @@
 let lastUpdateTime = null;
 let animationFrameId = null;
 
+// Format repository names from kebab-case or PascalCase to Title Case with spaces
+function formatRepoName(name) {
+  if (!name) return '';
+  // Handle kebab-case and PascalCase
+  return name
+    // Split by hyphens first
+    .split('-')
+    // Split each part by camelCase/PascalCase
+    .flatMap(part => part.split(/(?=[A-Z])/))
+    // Capitalize first letter of each word and join with spaces
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join(' ');
+}
+
 // -------- Project type count summary config --------
 
 // Which high level buckets exist and how they behave in the header summary
@@ -342,7 +356,7 @@ async function fetchProjects() {
                     </div>
                 </a>
                 <div class="project-details">
-                    <a href="${project.html_url}"> <h3>${project.name}</h3> </a>
+                    <a href="${project.html_url}"> <h3>${formatRepoName(project.name)}</h3> </a>
                     <p>${project.description || "No description available"}</p>
                     <div class="project-summary">
                         ${projectSummaryHTML}
