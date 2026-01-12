@@ -67,6 +67,17 @@ body {
   max-width: 1100px;
   margin: 0 auto;
   padding: var(--spacing-sm);
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .container {
+    text-align: left;
+  }
+
+  .main-header .container {
+    text-align: center;
+  }
 }
 
 section {
@@ -158,7 +169,7 @@ h2 {
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  text-align: center;
+  text-align: left;
 }
 
 @media (min-width: 768px) {
@@ -205,6 +216,15 @@ h2 {
   align-items: center;
 }
 
+@media (max-width: 600px) {
+  .tag-group-1 p {
+    flex-direction: column; /* label on its own line */
+    align-items: flex-start;
+    gap: 0.25rem;
+    margin-bottom: 0.75rem; /* space between groups */
+  }
+}
+
 .tag-group-2 {
   display: flex;
   flex-wrap: wrap;
@@ -221,6 +241,12 @@ h2 {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  #skills {
+    margin-top: 2.5rem; /* more separation from About on mobile */
+  }
 }
 
 /* Tag styles */
@@ -490,6 +516,29 @@ h2 {
   display: inline-block;
   width: 23px;
   text-align: center;
+}
+
+@media (max-width: 600px) {
+  .projects-header {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.25rem;
+  }
+
+  .projects-header h2 {
+    font-size: 1.4rem; /* a bit smaller so it wraps nicer */
+  }
+
+  #project-count-icons {
+    margin-left: 0.25rem; /* tighter spacing on mobile */
+    gap: 0.35rem;
+  }
+
+  .last-updated {
+    margin-left: 0; /* no awkward indent */
+    align-self: flex-end; /* sits on the right edge of the container */
+  }
 }
 
 /* ==============================================================
