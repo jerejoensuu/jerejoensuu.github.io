@@ -11,7 +11,13 @@
       "Legs move based on the velocity of the body for natural movement"
     ],
     "priority": 0,
-    "topics": ["inverse-kinematics", "procedural-animation", "unity3d"]
+    "topics": [
+      "inverse-kinematics",
+      "procedural-animation",
+      "unity3d"
+    ],
+    "archived": false,
+    "fork": false
   },
   {
     "name": "Pookie-Island",
@@ -30,13 +36,20 @@
       }
     ],
     "priority": 10,
-    "topics": ["open-world", "platformer", "puzzle", "unity3d"]
+    "topics": [
+      "open-world",
+      "platformer",
+      "puzzle",
+      "unity3d"
+    ],
+    "archived": false,
+    "fork": false
   },
   {
     "name": "Arachnophobia-demo",
     "html_url": "https://github.com/jerejoensuu/Arachnophobia-demo",
     "thumbnail": "https://raw.githubusercontent.com/jerejoensuu/Arachnophobia-demo/demo/images/Spiders.gif",
-    "description": "Demo for a horror game. Public fork prepared for portfolio purposes only.",
+    "description": "Demo for a horror game. Public fork for portfolio purposes.",
     "summary": [
       "Solo project",
       "UE learning project",
@@ -45,7 +58,13 @@
       "Car driveable"
     ],
     "priority": 20,
-    "topics": ["horror", "niagara-fx", "unreal-engine-5"]
+    "topics": [
+      "horror",
+      "niagara-fx",
+      "unreal-engine-5"
+    ],
+    "archived": false,
+    "fork": false
   },
   {
     "name": "Chess",
@@ -59,7 +78,11 @@
       "AI functionality implemented but left unpolished due to time constraints"
     ],
     "priority": 35,
-    "topics": ["unity2d"]
+    "topics": [
+      "unity2d"
+    ],
+    "archived": false,
+    "fork": false
   },
   {
     "name": "TheBanishment",
@@ -71,7 +94,13 @@
       "Responsible for most (player movement, environment interactions, level system, etc)"
     ],
     "priority": 40,
-    "topics": ["audio-occlusion", "fmod", "unity3d"]
+    "topics": [
+      "audio-occlusion",
+      "fmod",
+      "unity3d"
+    ],
+    "archived": false,
+    "fork": false
   },
   {
     "name": "The-Tainted-Forest",
@@ -94,6 +123,10 @@
       }
     ],
     "priority": 50,
-    "topics": ["unity2d"]
+    "topics": [
+      "unity2d"
+    ],
+    "archived": false,
+    "fork": false
   }
 ]
