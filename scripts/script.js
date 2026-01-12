@@ -22,9 +22,9 @@ const CATEGORY_CONFIG = {
     icon: "images/logos/python-logo.svg",
     priorityWeight: 2,
   },
-  mod: {
-    label: "Mods",
-    icon: "images/logos/mod-icon.svg",
+  minecraft: {
+    label: "Minecraft",
+    icon: "images/logos/minecraft-logo.svg",
     priorityWeight: 1,
   },
   js: {
@@ -126,8 +126,7 @@ function getProjectCategory(project) {
   if (topics.some((t) => t.includes("unity"))) return "unity";
   if (topics.some((t) => t.includes("unreal"))) return "unreal";
   if (topics.some((t) => t.includes("python"))) return "python";
-  if (topics.some((t) => t.includes("minecraft") || t.includes("mod")))
-    return "mod";
+  if (topics.some((t) => t.includes("minecraft"))) return "minecraft";
   if (topics.some((t) => t.includes("javascript") || t.includes("js")))
     return "js";
 
