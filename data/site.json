@@ -4,7 +4,8 @@
     { "label": "Unity", "priority": 1 },
     { "label": "Gameplay Programming", "priority": 1 },
     { "label": "UI Programming", "priority": 1 },
-    { "label": "Editor Scripting", "priority": 1 }
+    { "label": "Editor Scripting", "priority": 1 },
+    { "label": "Java", "priority": 2 }
   ],
   "systemsTools": [
     { "label": "Optimization", "priority": 1 },

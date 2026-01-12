@@ -4,16 +4,18 @@ let animationFrameId = null;
 
 // Format repository names from kebab-case or PascalCase to Title Case with spaces
 function formatRepoName(name) {
-  if (!name) return '';
+  if (!name) return "";
   // Handle kebab-case and PascalCase
-  return name
-    // Split by hyphens first
-    .split('-')
-    // Split each part by camelCase/PascalCase
-    .flatMap(part => part.split(/(?=[A-Z])/))
-    // Capitalize first letter of each word and join with spaces
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-    .join(' ');
+  return (
+    name
+      // Split by hyphens first
+      .split("-")
+      // Split each part by camelCase/PascalCase
+      .flatMap((part) => part.split(/(?=[A-Z])/))
+      // Capitalize first letter of each word and join with spaces
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ")
+  );
 }
 
 // -------- Project type count summary config --------
@@ -297,20 +299,26 @@ function hideLoading() {
 }
 
 function getEngineBadge(topics) {
-  if ((topics || []).some((topic) => topic.includes("unity"))) {
-    return `<div class="engine-badge">
-            <img src="images/logos/unity-logo.svg" alt="Unity Project">
-        </div>`;
-  } else if ((topics || []).some((topic) => topic.includes("unreal"))) {
-    return `<div class="engine-badge">
-            <img src="images/logos/unreal-logo.svg" alt="Unreal Engine Project">
-        </div>`;
-  } else if ((topics || []).includes("python")) {
-    return `<div class="engine-badge">
-            <img src="images/logos/python-logo.svg" alt="Python Project">
-        </div>`;
+  switch (true) {
+    case (topics || []).some((topic) => topic.includes("unity")):
+      return `<div class="engine-badge">
+              <img src="images/logos/unity-logo.svg" alt="Unity Project">
+          </div>`;
+    case (topics || []).some((topic) => topic.includes("unreal")):
+      return `<div class="engine-badge">
+              <img src="images/logos/unreal-logo.svg" alt="Unreal Engine Project">
+          </div>`;
+    case (topics || []).includes("python"):
+      return `<div class="engine-badge">
+              <img src="images/logos/python-logo.svg" alt="Python Project">
+          </div>`;
+    case (topics || []).includes("minecraft"):
+      return `<div class="engine-badge">
+              <img src="images/logos/minecraft-logo.svg" alt="Minecraft Project">
+          </div>`;
+    default:
+      return "";
   }
-  return "";
 }
 
 async function fetchProjects() {
@@ -356,7 +364,9 @@ async function fetchProjects() {
                     </div>
                 </a>
                 <div class="project-details">
-                    <a href="${project.html_url}"> <h3>${formatRepoName(project.name)}</h3> </a>
+                    <a href="${project.html_url}"> <h3>${formatRepoName(
+        project.name
+      )}</h3> </a>
                     <p>${project.description || "No description available"}</p>
                     <div class="project-summary">
                         ${projectSummaryHTML}
