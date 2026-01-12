@@ -501,7 +501,7 @@ h2 {
   left: 0;
   width: 60px;
   height: 60px;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(42, 42, 42);
   clip-path: polygon(0 0, 0% 100%, 100% 0);
   display: flex;
   align-items: center;
@@ -513,8 +513,8 @@ h2 {
   width: 24px;
   height: 24px;
   position: absolute;
-  top: 6px;
-  left: 6px;
+  top: 5px;
+  left: 5px;
   filter: brightness(0) invert(1);
 }
 
