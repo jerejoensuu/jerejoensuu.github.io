@@ -529,8 +529,10 @@ h2 {
 }
 
 /* On hover of the card, slide full width into view */
-.project-item:hover .link-flag {
-  transform: translateX(0);
+@media (hover: hover) and (pointer: fine) {
+  .project-item:hover .link-flag {
+    transform: translateX(0);
+  }
 }
 
 /* Icon inside flag */
