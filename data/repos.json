@@ -37,7 +37,7 @@
       }
     ],
     "priority": 10,
-    "link": null,
+    "link": "https://nedrichard.itch.io/pookie-island",
     "topics": [
       "open-world",
       "platformer",
@@ -144,7 +144,7 @@
       "Published project"
     ],
     "priority": 60,
-    "link": null,
+    "link": "https://modrinth.com/mod/world-border-timer",
     "topics": [
       "fabric",
       "java",
