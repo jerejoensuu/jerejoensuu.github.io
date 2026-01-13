@@ -133,7 +133,6 @@ async function fetchPortfolioData(owner, repo) {
       return null;
     }
 
-    // Decode Base64 content
     let json;
     try {
       const decoded = Buffer.from(file.content, "base64").toString("utf-8");
@@ -145,7 +144,7 @@ async function fetchPortfolioData(owner, repo) {
       return null;
     }
 
-    const { Summary, Priority } = json;
+    const { Summary, Priority, link = null } = json;
 
     if (!Array.isArray(Summary) || typeof Priority !== "number") {
       console.warn(
