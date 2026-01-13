@@ -489,13 +489,12 @@ h2 {
 /* ==============================================================
    9. Project Type Count Icons
 ============================================================== */
+
 #project-count-icons {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  margin-left: 0.5rem;
-  position: relative;
-  top: 0.15em;
+  margin-left: 0.75rem; /* slight spacing after title */
 }
 
 .project-count-item {
@@ -518,26 +517,45 @@ h2 {
   text-align: center;
 }
 
+.last-updated {
+  margin-left: auto; /* push timestamp to far right */
+  font-size: 0.8rem;
+  color: #666;
+}
+
+/* ==============================================================
+   Mobile Layout Fix (≤600px)
+============================================================== */
+
 @media (max-width: 600px) {
+  /* Stack the entire header */
   .projects-header {
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 0.25rem;
+    align-items: center;
+    gap: 0.4rem;
+    text-align: center;
+    margin-bottom: var(--spacing-sm);
   }
 
   .projects-header h2 {
-    font-size: 1.4rem; /* a bit smaller so it wraps nicer */
+    margin-bottom: 0;
+    font-size: 1.4rem;
   }
 
+  /* Icons centered under title */
   #project-count-icons {
-    margin-left: 0.25rem; /* tighter spacing on mobile */
+    margin-left: 0;
+    justify-content: center;
+    flex-wrap: wrap;
     gap: 0.35rem;
   }
 
+  /* Timestamp also centered below icons */
   .last-updated {
-    margin-left: 0; /* no awkward indent */
-    align-self: flex-end; /* sits on the right edge of the container */
+    margin-left: 0;
+    width: 100%;
+    text-align: center;
   }
 }
 
