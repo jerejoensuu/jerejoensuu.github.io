@@ -115,7 +115,7 @@ async function fetchProjectThumbnail(owner, repo) {
  * Returns null if the file is missing or invalid.
  * @param {string} owner
  * @param {string} repo
- * @returns {{ Summary: string[], Priority: number, link?: string|null }|null}
+ * @returns {{ Summary: string[], Priority: number, Link?: string|null }|null}
  */
 async function fetchPortfolioData(owner, repo) {
   const apiUrl = `${GITHUB_API_BASE}/repos/${owner}/${repo}/contents/portfolio.json`;
@@ -133,6 +133,7 @@ async function fetchPortfolioData(owner, repo) {
       return null;
     }
 
+    // Decode Base64 JSON
     let json;
     try {
       const decoded = Buffer.from(file.content, "base64").toString("utf-8");
@@ -144,7 +145,8 @@ async function fetchPortfolioData(owner, repo) {
       return null;
     }
 
-    const { Summary, Priority, link = null } = json;
+    // Required fields
+    const { Summary, Priority, Link } = json;
 
     if (!Array.isArray(Summary) || typeof Priority !== "number") {
       console.warn(
@@ -156,10 +158,10 @@ async function fetchPortfolioData(owner, repo) {
     console.info(
       `✅  ${repo}: loaded portfolio.json (Priority=${Priority}, Summary items=${
         Summary.length
-      }${link ? `, Link=${link}` : ""})`
+      }${Link ? `, Link=${Link}` : ""})`
     );
 
-    return { Summary, Priority, link };
+    return { Summary, Priority, Link: Link || null };
   } catch (err) {
     console.warn(
       `⚠️  ${repo}: error fetching portfolio.json (${err.message}) → skipping`
