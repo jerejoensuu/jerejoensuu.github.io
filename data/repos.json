@@ -12,11 +12,7 @@
     ],
     "priority": 0,
     "link": null,
-    "topics": [
-      "inverse-kinematics",
-      "procedural-animation",
-      "unity3d"
-    ],
+    "topics": ["inverse-kinematics", "procedural-animation", "unity3d"],
     "archived": false,
     "fork": false
   },
@@ -38,12 +34,7 @@
     ],
     "priority": 10,
     "link": "https://nedrichard.itch.io/pookie-island",
-    "topics": [
-      "open-world",
-      "platformer",
-      "puzzle",
-      "unity3d"
-    ],
+    "topics": ["open-world", "platformer", "puzzle", "unity3d"],
     "archived": false,
     "fork": false
   },
@@ -61,11 +52,7 @@
     ],
     "priority": 20,
     "link": null,
-    "topics": [
-      "horror",
-      "niagara-fx",
-      "unreal-engine-5"
-    ],
+    "topics": ["horror", "niagara-fx", "unreal-engine-5"],
     "archived": false,
     "fork": false
   },
@@ -81,9 +68,7 @@
     ],
     "priority": 35,
     "link": null,
-    "topics": [
-      "unity2d"
-    ],
+    "topics": ["unity2d"],
     "archived": false,
     "fork": false
   },
@@ -98,11 +83,7 @@
     ],
     "priority": 40,
     "link": null,
-    "topics": [
-      "audio-occlusion",
-      "fmod",
-      "unity3d"
-    ],
+    "topics": ["audio-occlusion", "fmod", "unity3d"],
     "archived": false,
     "fork": false
   },
@@ -128,9 +109,7 @@
     ],
     "priority": 50,
     "link": null,
-    "topics": [
-      "unity2d"
-    ],
+    "topics": ["unity2d"],
     "archived": false,
     "fork": false
   },
@@ -139,17 +118,10 @@
     "html_url": "https://github.com/jerejoensuu/world-border-timer",
     "thumbnail": "https://raw.githubusercontent.com/jerejoensuu/world-border-timer/main/images/thumbnail.jpg",
     "description": "A lightweight Fabric mod that displays a live countdown showing when the world border will reach the player or complete its shrink. Includes configurable HUD placement and formatting.",
-    "summary": [
-      "Minecraft mod",
-      "Published project"
-    ],
+    "summary": ["Minecraft mod", "Published project"],
     "priority": 60,
     "link": "https://modrinth.com/mod/world-border-timer",
-    "topics": [
-      "fabric",
-      "java",
-      "minecraft"
-    ],
+    "topics": ["fabric", "java", "minecraft"],
     "archived": false,
     "fork": false
   }
