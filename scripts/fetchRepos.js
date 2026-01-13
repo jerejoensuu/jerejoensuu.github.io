@@ -211,7 +211,7 @@ async function fetchRepos() {
           description: repo.description,
           summary: portfolio.Summary,
           priority: portfolio.Priority,
-          link: portfolio.link || null, // ← link from portfolio.json
+          link: portfolio.Link || null,
           topics: repo.topics,
           archived: repo.archived,
           fork: repo.fork,
