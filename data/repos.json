@@ -43,7 +43,8 @@
       "unity3d"
     ],
     "archived": false,
-    "fork": false
+    "fork": false,
+    "link": "https://nedrichard.itch.io/pookie-island"
   },
   {
     "name": "Arachnophobia-demo",
@@ -144,6 +145,7 @@
       "minecraft"
     ],
     "archived": false,
-    "fork": false
+    "fork": false,
+    "link": "https://modrinth.com/mod/world-border-timer"
   }
 ]

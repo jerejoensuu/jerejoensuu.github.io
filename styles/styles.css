@@ -486,6 +486,86 @@ h2 {
   margin-bottom: 5px;
 }
 
+/* Swallowtail link flag that slides based on its actual content width */
+.link-flag {
+  position: absolute;
+  bottom: 10%;
+  right: 0;
+
+  /* Size/shape */
+  height: 32px;
+  line-height: 32px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+
+  padding: 0 10px 0 23px; /* left padding for the notch area */
+
+  background-color: #3498db;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+
+  z-index: 3;
+  pointer-events: auto;
+  cursor: pointer;
+
+  /* Swallowtail shape, attached at right edge */
+  clip-path: polygon(100% 0, 100% 100%, 0 100%, 15px 50%, 0 0);
+
+  /* Hide everything except a small peek on the right.
+     100% = full width of the flag; 50px = visible sliver. */
+  transform: translateX(calc(100% - 50px));
+  transition: transform 0.25s ease, background-color 0.25s ease;
+}
+
+.link-flag,
+.link-flag:visited,
+.link-flag:hover,
+.link-flag:active {
+  color: #fff;
+}
+
+/* On hover of the card, slide full width into view */
+.project-item:hover .link-flag {
+  transform: translateX(0);
+}
+
+/* Icon inside flag */
+.link-flag-favicon {
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.link-flag-default-icon {
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+/* Label: no hard max-width – flag width grows with text length.
+   Ellipsis just keeps truly absurd URLs sane. */
+.link-flag-text {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* Expand flag when card is considered “focused” on non-hover devices */
+.no-hover .project-thumbnail-container.flag-active .link-flag {
+  transform: translateX(0);
+  gap: 0.35rem;
+}
+
+@media (max-width: 768px) {
+  .link-flag {
+    bottom: 15%;
+  }
+}
+
 /* ==============================================================
    9. Project Type Count Icons
 ============================================================== */

@@ -2,6 +2,39 @@
 let lastUpdateTime = null;
 let animationFrameId = null;
 
+const flagContainers = [];
+
+function updateFlagAutoExpandOnScroll() {
+  if (!document.body.classList.contains("no-hover")) {
+    // On hover-capable devices, we only use :hover CSS
+    return;
+  }
+
+  const viewportHeight = window.innerHeight;
+
+  const bandTop = viewportHeight * 0.15;
+  const bandBottom = viewportHeight * 0.55;
+
+  flagContainers.forEach((container) => {
+    const rect = container.getBoundingClientRect();
+
+    // Ignore if not visible at all
+    if (rect.bottom <= 0 || rect.top >= viewportHeight) {
+      container.classList.remove("flag-active");
+      return;
+    }
+
+    // Use the center of the container in viewport coords
+    const cardCenter = rect.top + rect.height / 2;
+
+    if (cardCenter >= bandTop && cardCenter <= bandBottom) {
+      container.classList.add("flag-active");
+    } else {
+      container.classList.remove("flag-active");
+    }
+  });
+}
+
 // Format repository names from kebab-case or PascalCase to Title Case with spaces
 function formatRepoName(name) {
   if (!name) return "";
@@ -321,6 +354,74 @@ function getEngineBadge(topics) {
   }
 }
 
+// -------- Website / flag helpers --------
+
+function getWebsiteInfo(url) {
+  try {
+    const u = new URL(url);
+    const hostname = u.hostname.replace(/^www\./, "");
+
+    let label = hostname;
+    if (hostname.endsWith("itch.io")) label = "itch.io";
+    else if (hostname.endsWith("github.io")) label = "GitHub Pages";
+
+    const favicon = `${u.origin}/favicon.ico`;
+
+    return {
+      href: url,
+      label,
+      favicon,
+    };
+  } catch (e) {
+    return {
+      href: url,
+      label: url,
+      favicon: null,
+    };
+  }
+}
+
+function buildLinkFlagHtml(url) {
+  const info = getWebsiteInfo(url);
+
+  const iconHtml = info.favicon
+    ? `<img src="${info.favicon}" alt="${info.label} icon" class="link-flag-favicon" loading="lazy">`
+    : `<span class="link-flag-default-icon">↗</span>`;
+
+  return `
+    <a 
+      class="link-flag"
+      href="${info.href}"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Open ${info.label}"
+      title="${info.label}"
+    >
+      ${iconHtml}
+      <span class="link-flag-text">${info.label}</span>
+    </a>
+  `;
+}
+
+// -------- Hover capability + auto-expand on non-hover devices --------
+
+function updateHoverCapability() {
+  if (window.matchMedia && window.matchMedia("(hover: none)").matches) {
+    document.body.classList.add("no-hover");
+  } else {
+    document.body.classList.remove("no-hover");
+  }
+}
+
+updateHoverCapability();
+window.addEventListener("resize", updateHoverCapability);
+
+function setupFlagAutoExpand(cardEl) {
+  const container = cardEl.querySelector(".project-thumbnail-container");
+  if (!container) return;
+  flagContainers.push(container);
+}
+
 async function fetchProjects() {
   showLoading();
   // Small delay for nicer spinner; optional
@@ -348,37 +449,52 @@ async function fetchProjects() {
         project.thumbnail || "images/blank-thumbnail.jpg";
       const engineBadge = getEngineBadge(project.topics || []);
       const projectSummaryHTML = generateSummaryHTML(project.summary);
+      const websiteFlagHtml = project.link
+        ? buildLinkFlagHtml(project.link)
+        : "";
 
       projectCard.innerHTML = `
-                <a href="${project.html_url}" rel="noopener noreferrer">
-                    <div class="project-thumbnail-container">
-                        ${engineBadge}
-                        <div class="thumbnail-spinner loading-spinner-card"></div>
-                        <img 
-                            src="${projectThumbnail}" 
-                            alt="${project.name} Thumbnail" 
-                            class="project-thumbnail"
-                            loading="lazy"
-                            onload="this.style.opacity='1'; this.previousElementSibling.style.display='none';"
-                        >
-                    </div>
-                </a>
-                <div class="project-details">
-                    <a href="${project.html_url}"> <h3>${formatRepoName(
-        project.name
-      )}</h3> </a>
-                    <p>${project.description || "No description available"}</p>
-                    <div class="project-summary">
-                        ${projectSummaryHTML}
-                    </div>
-                </div>
-                <div class="tag-group-2">
-                    ${(project.topics || [])
-                      .map((topic) => `<span class="tag3">${topic}</span>`)
-                      .join("")}
-                </div>
-            `;
+          <div class="project-thumbnail-container">
+            <a 
+              href="${project.html_url}" 
+              rel="noopener noreferrer" 
+              target="_blank"
+              class="project-thumbnail-link"
+            >
+              ${engineBadge}
+              <div class="thumbnail-spinner loading-spinner-card"></div>
+              <img 
+                src="${projectThumbnail}" 
+                alt="${project.name} Thumbnail" 
+                class="project-thumbnail"
+                loading="lazy"
+                onload="this.style.opacity='1'; this.previousElementSibling.style.display='none';"
+              >
+            </a>
+            ${websiteFlagHtml}
+          </div>
+          <div class="project-details">
+            <a 
+              href="${project.html_url}" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <h3>${formatRepoName(project.name)}</h3>
+            </a>
+            <p>${project.description || "No description available"}</p>
+            <div class="project-summary">
+              ${projectSummaryHTML}
+            </div>
+          </div>
+          <div class="tag-group-2">
+            ${(project.topics || [])
+              .map((topic) => `<span class="tag3">${topic}</span>`)
+              .join("")}
+          </div>
+        `;
+
       projectsGrid.appendChild(projectCard);
+      setupFlagAutoExpand(projectCard);
     });
 
     lastUpdateTime = new Date();
@@ -396,6 +512,7 @@ async function fetchProjects() {
     }
   } finally {
     hideLoading();
+    updateFlagAutoExpandOnScroll();
   }
 }
 
@@ -461,6 +578,23 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
     lastScroll = currentScroll;
   });
+});
+
+window.addEventListener("scroll", updateFlagAutoExpandOnScroll);
+window.addEventListener("resize", updateFlagAutoExpandOnScroll);
+
+document.addEventListener("click", (e) => {
+  const flag = e.target.closest(".link-flag");
+  if (!flag) return;
+
+  const container = flag.closest(".project-thumbnail-container");
+  if (!container) return;
+
+  // Immediately collapse it
+  container.classList.remove("flag-active");
+
+  // Optional: re-evaluate all cards so only the one truly in-band is active
+  updateFlagAutoExpandOnScroll();
 });
 
 document.addEventListener("visibilitychange", () => {
