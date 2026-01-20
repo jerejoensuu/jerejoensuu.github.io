@@ -140,7 +140,8 @@
     "thumbnail": "https://raw.githubusercontent.com/jerejoensuu/world-border-timer/main/images/thumbnail.jpg",
     "description": "A lightweight Fabric mod that displays a live countdown showing when the world border will reach the player or complete its shrink. Includes configurable HUD placement and formatting.",
     "summary": [
-      "Project published on Modrinth"
+      "Project published on Modrinth",
+      "Includes semi-automated version testing tools"
     ],
     "priority": 60,
     "link": "https://modrinth.com/mod/world-border-timer",
