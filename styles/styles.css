@@ -507,6 +507,7 @@ h2 {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
+  text-decoration: underline;
 
   z-index: 3;
   pointer-events: auto;
