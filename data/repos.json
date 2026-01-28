@@ -153,5 +153,23 @@
     ],
     "archived": false,
     "fork": false
+  },
+  {
+    "name": "looping-void",
+    "html_url": "https://github.com/jerejoensuu/looping-void",
+    "thumbnail": "https://raw.githubusercontent.com/jerejoensuu/looping-void/master/images/thumbnail.jpg",
+    "description": "Aether Void is a Minecraft data pack that replaces void death with a configurable recovery system that returns players to safe heights or their last grounded position across all dimensions.",
+    "summary": [
+      "A data pack made using Minecraft's command system",
+      "Published on Modrinth and used by real players"
+    ],
+    "priority": 61,
+    "link": "https://modrinth.com/datapack/looping-void",
+    "topics": [
+      "minecraft",
+      "minecraft-datapack"
+    ],
+    "archived": false,
+    "fork": false
   }
 ]
