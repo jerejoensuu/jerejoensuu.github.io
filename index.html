@@ -80,12 +80,24 @@
         <div id="project-count-icons"></div>
         <span id="last-updated" class="last-updated"></span>
       </div>
+
       <div
         id="projects-loading"
         class="loading-spinner"
         style="display: none"
       ></div>
-      <div id="projects-grid" class="projects-grid"></div>
+
+      <div id="projects-grid" class="projects-grid" data-prerender="true">
+        <!-- PROJECTS_PRERENDER_START -->
+        <!-- PROJECTS_PRERENDER_END -->
+      </div>
+
+      <noscript>
+        <p>
+          Projects are listed above. JavaScript is disabled so live updates are
+          unavailable.
+        </p>
+      </noscript>
     </div>
 
     <section id="contact" class="container">
