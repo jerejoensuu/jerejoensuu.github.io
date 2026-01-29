@@ -4,31 +4,44 @@ name: Update Cached Data
 
 on:
   #schedule:
-  #  - cron: '0 */6 * * *' # Runs every 6 hours
+  #  - cron: "0 */6 * * *" # Runs every 6 hours
   workflow_dispatch: # Allows manual triggering of the workflow
+
+permissions:
+  contents: write
 
 jobs:
   update-data:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
 
       - name: Set up Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "20"
+          cache: "npm"
 
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Fetch Repositories and Thumbnails
-        run: node scripts/fetchRepos.js
+      - name: Build repo cache and prerendered HTML
+        run: |
+          node scripts/fetchRepos.js
+          node scripts/generateRepoPrerender.js
+          node scripts/injectPrerenderIntoIndex.js
         env:
           ACTIONS_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
 
       - name: Commit and Push Changes
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Update cached data
-          file_pattern: data/repos.json
+          file_pattern: |
+            data/repos.json
+            data/repos.prerender.html
+            index.html
