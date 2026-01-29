@@ -33,6 +33,7 @@ jobs:
           node scripts/fetchRepos.js
           node scripts/generateRepoPrerender.js
           node scripts/injectPrerenderIntoIndex.js
+          node scripts/generateSkillsPrerender.js
         env:
           ACTIONS_TOKEN: ${{ secrets.ACTIONS_TOKEN }}
 
@@ -50,3 +51,4 @@ jobs:
 
           git commit -m "Update cached data"
           git push
+
