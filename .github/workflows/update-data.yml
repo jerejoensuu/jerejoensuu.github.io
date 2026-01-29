@@ -41,9 +41,10 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: Update cached data
-          add: true
+          add_options: "-A"
           file_pattern: |
             data/repos.json
             data/repos.prerender.html
             index.html
+
 
