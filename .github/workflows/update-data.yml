@@ -4,8 +4,8 @@ name: Update Cached Data
 
 on:
   #schedule:
-  #  - cron: "0 */6 * * *" # Runs every 6 hours
-  workflow_dispatch: # Allows manual triggering of the workflow
+  #  - cron: "0 */6 * * *"
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -27,7 +27,7 @@ jobs:
           cache: "npm"
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build repo cache and prerendered HTML
         run: |
