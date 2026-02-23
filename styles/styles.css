@@ -380,7 +380,7 @@ h2 {
   color: var(--color-primary);
   font-weight: 600;
   font-size: 0.85rem;
-  text-decoration: none;
+  text-decoration: underline;
   border: 1px solid rgba(0, 0, 0, 0.06);
   transition:
     background-color var(--transition-fast),
@@ -390,7 +390,7 @@ h2 {
 .featured-links a:hover {
   background: #e6f2fb;
   color: #1f6fa8;
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 .featured-body ul {
