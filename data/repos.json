@@ -140,7 +140,7 @@
     "thumbnail": "https://raw.githubusercontent.com/jerejoensuu/world-border-timer/main/images/thumbnail.jpg",
     "description": "A lightweight Fabric mod that displays a live countdown showing when the world border will reach the player or complete its shrink. Includes configurable HUD placement and formatting.",
     "summary": [
-      "Published on Modrinth and used by real players",
+      "Published and used by players on [Modrinth](https://modrinth.com/mod/world-border-timer)",
       "Configurable HUD placement and formatting",
       "Includes semi-automated version testing tools"
     ],
@@ -161,7 +161,7 @@
     "description": "Minecraft data pack that replaces void death with a configurable recovery system that returns players to relatively safe heights from the void.",
     "summary": [
       "A data pack made using Minecraft's command system",
-      "Published on Modrinth and used by real players"
+      "Published and used by players on [Modrinth](https://modrinth.com/datapack/looping-void)"
     ],
     "priority": 61,
     "link": "https://modrinth.com/datapack/looping-void",

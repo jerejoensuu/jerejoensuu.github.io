@@ -18,12 +18,35 @@
     { "label": "Python", "priority": 1 },
     { "label": "TypeScript", "priority": 2 }
   ],
+  "featuredProject": {
+    "company": "Rokada Games",
+    "role": "Independent Contractor",
+    "years": "2025 - present",
+    "logo": "images/logos/companies/rokadachess-logo.svg",
+    "logoAlt": "RokadaChess Thumbnail",
+    "links": [
+      {
+        "label": "RokadaChess.com",
+        "href": "https://www.rokadachess.com/"
+      },
+      {
+        "label": "RokadaChess.fi",
+        "href": "https://www.rokadachess.fi/"
+      }
+    ],
+    "bullets": [
+      "Contracted to build the complete digital version of RokadaChess.",
+      "Responsible for all game programming: rules engine, AI, multiplayer, UI systems, game mode support and more.",
+      "Architected a deterministic rules engine that handles advanced mechanics.",
+      "Developed performant AI search and evaluation systems tailored to RokadaChess’s asymmetric rule constraints."
+    ]
+  },
   "workExperience": [
     {
       "company": "Kyy Games",
       "role": "",
       "years": "2024 - 2025",
-      "logo": "images/kyylogo.png",
+      "logo": "images/logos/companies/kyylogo.png",
       "logoAlt": "Kyy Games Thumbnail",
       "bullets": [
         "Worked on core gameplay, UI, and data systems in a large live Unity project.",
@@ -37,7 +60,7 @@
       "company": "Skydome Entertainment",
       "role": "",
       "years": "2024 - 2024",
-      "logo": "images/skydomelogo.webp",
+      "logo": "images/logos/companies/skydomelogo.webp",
       "logoAlt": "Skydome Entertainment Thumbnail",
       "bullets": [
         "Developed custom editor tools for enhanced scene management and improved workflow.",
@@ -47,11 +70,11 @@
       ]
     },
     {
-      "company": "Supremacy Games Oy",
+      "company": "Supremacy Games",
       "role": "",
       "years": "2022 - 2024",
-      "logo": "images/apex_kings_nft_logo (1).png",
-      "logoAlt": "Supremacy Games Oy Thumbnail",
+      "logo": "images/logos/companies/apex_kings_nft_logo (1).png",
+      "logoAlt": "Supremacy Games Thumbnail",
       "bullets": [
         "Worked on the client side of Apex Kings, a web3 racing game.",
         "Played a major role in creating the main gameplay and UI structure.",

@@ -1,3 +1,4 @@
+// scripts/script.js
 // Store the last update timestamp globally
 let lastUpdateTime = null;
 let animationFrameId = null;
@@ -104,6 +105,89 @@ function renderTags(containerId, tags) {
     span.textContent = tag.label ?? String(tag);
     el.appendChild(span);
   });
+}
+
+function escapeHtml(input) {
+  return String(input ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function safeLinkLabel(link) {
+  const label = link?.label ? String(link.label) : "Link";
+  return escapeHtml(label);
+}
+
+function safeLinkHref(link) {
+  const href = link?.href ? String(link.href) : "#";
+  return escapeHtml(href);
+}
+
+function renderFeaturedProject(item) {
+  const root = document.getElementById("featured-card");
+  if (!root) return;
+
+  if (!item) {
+    root.innerHTML = "";
+    return;
+  }
+
+  const logoHtml = item.logo
+    ? `
+      <div class="featured-logo-container">
+        <img
+          src="${escapeHtml(item.logo)}"
+          alt="${escapeHtml(item.logoAlt || item.company + " Logo")}"
+          class="featured-thumbnail"
+        >
+      </div>
+    `
+    : "";
+
+  const title = `${item.company}${item.role ? ` - ${item.role}` : ""}`;
+
+  const links = Array.isArray(item.links) ? item.links : [];
+  const linksHtml =
+    links.length > 0
+      ? `
+        <div class="featured-links">
+          ${links
+            .map(
+              (l) =>
+                `<a href="${safeLinkHref(l)}" target="_blank" rel="noopener noreferrer">${safeLinkLabel(l)}</a>`,
+            )
+            .join("")}
+        </div>
+      `
+      : "";
+
+  const bulletsHtml =
+    Array.isArray(item.bullets) && item.bullets.length
+      ? `<ul>${item.bullets.map((b) => `<li>${b}</li>`).join("")}</ul>`
+      : "<ul></ul>";
+
+  root.innerHTML = `
+    <article class="featured-item">
+      ${logoHtml}
+
+      <div class="featured-content">
+        <div class="featured-header">
+          <h3 class="featured-title">${escapeHtml(title)}</h3>
+          <div class="featured-meta">
+            <span class="featured-years">${escapeHtml(item.years || "")}</span>
+            ${linksHtml}
+          </div>
+        </div>
+
+        <div class="featured-body">
+          ${bulletsHtml}
+        </div>
+      </div>
+    </article>
+  `;
 }
 
 function renderWork(workItems) {
@@ -378,6 +462,15 @@ function setupFlagAutoExpand(cardEl) {
   flagContainers.push(container);
 }
 
+function parseMarkdownLinks(text) {
+  // Parse markdown-style links [text](url)
+  return text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, text, url) => {
+    const escapedText = escapeHtml(text);
+    const escapedUrl = escapeHtml(url);
+    return `<a href="${escapedUrl}" target="_blank" rel="noopener noreferrer">${escapedText}</a>`;
+  });
+}
+
 function generateSummaryHTML(summary) {
   if (!Array.isArray(summary) || summary.length === 0) {
     return "<p>No summary available.</p>";
@@ -385,14 +478,14 @@ function generateSummaryHTML(summary) {
   let html = "<ul>";
   summary.forEach((item) => {
     if (typeof item === "string") {
-      html += `<li>${item}</li>`;
+      html += `<li>${parseMarkdownLinks(item)}</li>`;
     } else if (typeof item === "object" && item !== null) {
       for (const [key, values] of Object.entries(item)) {
-        html += `<li>${key}</li>`;
+        html += `<li>${parseMarkdownLinks(key)}</li>`;
         if (Array.isArray(values)) {
           html += `<ul>`;
           values.forEach((subItem) => {
-            html += `<li>${subItem}</li>`;
+            html += `<li>${parseMarkdownLinks(subItem)}</li>`;
           });
           html += `</ul>`;
         }
@@ -486,7 +579,6 @@ function rebuildProjectsGrid(projects) {
 async function fetchProjects() {
   showLoading();
 
-  // Visual delay is preserved, even with prerendered HTML present.
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
   try {
@@ -509,7 +601,6 @@ async function fetchProjects() {
     const newFingerprint = computeFingerprint(filteredProjects);
     const oldFingerprint = projectsGrid.getAttribute("data-fingerprint");
 
-    // If there is no prerender content, render immediately.
     const hasAnyCards = projectsGrid.children.length > 0;
 
     if (!hasAnyCards || oldFingerprint !== newFingerprint) {
@@ -525,7 +616,6 @@ async function fetchProjects() {
   } catch (error) {
     console.error("Error fetching projects:", error);
 
-    // If prerender exists, keep it. Only show an error if grid is empty.
     const projectsGrid = document.getElementById("projects-grid");
     if (projectsGrid && projectsGrid.children.length === 0) {
       projectsGrid.innerHTML = `
@@ -553,12 +643,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     renderTags("core-tags", config.core);
     renderTags("systems-tags", config.systemsTools);
     renderTags("learning-tags", config.learning);
+
+    renderFeaturedProject(config.featuredProject);
     renderWork(config.workExperience);
   } catch (e) {
     console.error(e);
   }
 
-  // Ensure prerendered cards register for flag auto-expand.
   document.querySelectorAll("#projects-grid .project-item").forEach((card) => {
     setupFlagAutoExpand(card);
   });
@@ -568,7 +659,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   setInterval(fetchProjects, 300000);
 
   const stickyHeader = document.querySelector(".sticky-header");
-  const mainHeader = document.querySelector(".main-header");
   let lastScroll = 0;
 
   window.addEventListener("scroll", () => {

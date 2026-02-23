@@ -281,7 +281,131 @@ h2 {
 }
 
 /* ==============================================================
-   7. Work Experience Section
+   7. Featured Project Section
+============================================================== */
+
+.featured-card {
+  width: 100%;
+}
+
+.featured-item {
+  background-color: #fff;
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-md);
+  align-items: start;
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.featured-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+@media (min-width: 900px) {
+  .featured-item {
+    grid-template-columns: 320px 1fr;
+    gap: var(--spacing-lg);
+  }
+}
+
+.featured-logo-container {
+  background-color: #1b1b1b;
+  padding: 14px;
+  border-radius: 14px;
+  width: 100%;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.featured-thumbnail {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.featured-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  text-align: left;
+}
+
+.featured-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.featured-title {
+  font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+  color: var(--color-primary);
+  line-height: 1.25;
+  margin: 0;
+}
+
+.featured-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.featured-years {
+  color: var(--color-muted);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.featured-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.featured-links a {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  background: var(--color-light);
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-decoration: none;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  transition:
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.featured-links a:hover {
+  background: #e6f2fb;
+  color: #1f6fa8;
+  text-decoration: none;
+}
+
+.featured-body ul {
+  list-style-type: disc;
+  padding-left: var(--spacing-md);
+  margin: 0;
+}
+
+.featured-body ul li {
+  margin-bottom: 8px;
+  font-size: clamp(0.9rem, 2vw, 1rem);
+}
+
+/* ==============================================================
+   8. Work Experience Section
 ============================================================== */
 .work-grid {
   display: grid;
@@ -368,7 +492,7 @@ h2 {
 }
 
 /* ==============================================================
-   8. Projects Section
+   9. Projects Section
 ============================================================== */
 .projects-header {
   display: flex;
@@ -574,7 +698,7 @@ h2 {
 }
 
 /* ==============================================================
-   9. Project Type Count Icons
+   10. Project Type Count Icons
 ============================================================== */
 
 #project-count-icons {
@@ -647,7 +771,7 @@ h2 {
 }
 
 /* ==============================================================
-   10. Engine Badge
+   11. Engine Badge
 ============================================================== */
 .engine-badge {
   position: absolute;
@@ -673,7 +797,7 @@ h2 {
 }
 
 /* ==============================================================
-   11. Links
+   12. Links
 ============================================================== */
 a {
   color: var(--color-secondary);
@@ -687,7 +811,7 @@ a:hover {
 }
 
 /* ==============================================================
-   12. Footer
+   13. Footer
 ============================================================== */
 footer {
   background-color: var(--color-primary);
@@ -699,7 +823,7 @@ footer {
 }
 
 /* ==============================================================
-   13. Loading Spinner
+   14. Loading Spinner
 ============================================================== */
 /* Base spinner box (positioning only, no rotation here) */
 .loading-spinner,
