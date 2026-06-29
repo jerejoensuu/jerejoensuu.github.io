@@ -779,12 +779,21 @@ h2 {
   left: 0;
   width: 60px;
   height: 60px;
-  background: rgba(42, 42, 42);
-  clip-path: polygon(0 0, 0% 100%, 100% 0);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 1;
+  pointer-events: none;
+}
+
+.engine-badge::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-top: 60px solid rgb(42, 42, 42);
+  border-right: 60px solid transparent;
+  z-index: 0;
 }
 
 .engine-badge img {
@@ -794,6 +803,7 @@ h2 {
   top: 5px;
   left: 5px;
   filter: brightness(0) invert(1);
+  z-index: 1;
 }
 
 /* ==============================================================
