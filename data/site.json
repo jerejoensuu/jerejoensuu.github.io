@@ -15,7 +15,7 @@
     { "label": "FMOD", "priority": 2 }
   ],
   "learning": [
-    { "label": "Python", "priority": 1 },
+    { "label": "Python", "priority": 2 },
     { "label": "TypeScript", "priority": 2 }
   ],
   "featuredProject": {
