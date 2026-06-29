@@ -110,6 +110,36 @@ function getWebsiteInfo(url) {
   }
 }
 
+function isWebmThumbnail(src) {
+  return /\.webm(?:[?#].*)?$/i.test(String(src || ""));
+}
+
+function buildProjectThumbnailHtml(thumbnail, name) {
+  const safeThumbnail = escapeHtml(thumbnail);
+  const safeName = escapeHtml(name);
+
+  if (isWebmThumbnail(thumbnail)) {
+    return `<video
+            class="project-thumbnail"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            onloadeddata="this.style.opacity='1'; this.previousElementSibling.style.display='none';"
+          >
+            <source src="${safeThumbnail}" type="video/webm">
+          </video>`;
+  }
+
+  return `<img
+            src="${safeThumbnail}"
+            alt="${safeName} Thumbnail"
+            class="project-thumbnail"
+            loading="lazy"
+            onload="this.style.opacity='1'; this.previousElementSibling.style.display='none';"
+          >`;
+}
 function buildLinkFlagHtml(url) {
   const info = getWebsiteInfo(url);
 
@@ -136,6 +166,7 @@ function buildLinkFlagHtml(url) {
 
 function renderCard(project) {
   const projectThumbnail = project.thumbnail || "images/blank-thumbnail.jpg";
+  const projectThumbnailHtml = buildProjectThumbnailHtml(projectThumbnail, project.name);
   const engineBadge = getEngineBadge(project.topics || []);
   const projectSummaryHTML = generateSummaryHTML(project.summary);
   const websiteFlagHtml = project.link ? buildLinkFlagHtml(project.link) : "";
@@ -154,13 +185,7 @@ function renderCard(project) {
         >
           ${engineBadge}
           <div class="thumbnail-spinner loading-spinner-card"></div>
-          <img
-            src="${escapeHtml(projectThumbnail)}"
-            alt="${escapeHtml(project.name)} Thumbnail"
-            class="project-thumbnail"
-            loading="lazy"
-            onload="this.style.opacity='1'; this.previousElementSibling.style.display='none';"
-          >
+          ${projectThumbnailHtml}
         </a>
         ${websiteFlagHtml}
       </div>

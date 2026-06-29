@@ -10,13 +10,17 @@
       <img src="images/logos/unity-logo.svg" alt="Unity Project">
     </div>
           <div class="thumbnail-spinner loading-spinner-card"></div>
-          <img
-            src="images/blank-thumbnail.jpg"
-            alt="procedural-animation Thumbnail"
+          <video
             class="project-thumbnail"
-            loading="lazy"
-            onload="this.style.opacity='1'; this.previousElementSibling.style.display='none';"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            onloadeddata="this.style.opacity='1'; this.previousElementSibling.style.display='none';"
           >
+            <source src="https://raw.githubusercontent.com/jerejoensuu/procedural-animation/main/Images/_Obstacles.webm" type="video/webm">
+          </video>
         </a>
         
       </div>

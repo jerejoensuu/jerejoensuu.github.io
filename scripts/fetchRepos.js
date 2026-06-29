@@ -2,7 +2,7 @@
  * fetchRepos.js
  *
  * Fetches public GitHub repos for a user, filters to repos that contain a valid
- * `portfolio.json`, finds a thumbnail from the repo `images/` directory,
+ * `portfolio.json`, finds a thumbnail from the repo `images/` or `Images/` directory,
  * then writes enriched data to `data/repos.json`.
  *
  * Usage: node scripts/fetchRepos.js
@@ -54,17 +54,25 @@ async function githubFetch(url) {
 }
 
 async function fetchProjectThumbnail(owner, repo) {
-  const apiUrl = `${GITHUB_API_BASE}/repos/${owner}/${repo}/contents/images`;
+  const imageDirUrls = ["images", "Images"].map(
+    (dir) => `${GITHUB_API_BASE}/repos/${owner}/${repo}/contents/${dir}`,
+  );
 
   try {
-    const files = await githubFetch(apiUrl);
+    let files = null;
+
+    for (const apiUrl of imageDirUrls) {
+      files = await githubFetch(apiUrl);
+      if (files) break;
+    }
 
     if (!files) {
-      console.info(`ℹ️  ${repo}: no images directory → default thumbnail`);
+      console.info(`ℹ️  ${repo}: no images/Images directory → default thumbnail`);
       return DEFAULT_THUMBNAIL;
     }
 
     const priorityFiles = [
+      "thumbnail.webm",
       "thumbnail.gif",
       "thumbnail.jpeg",
       "thumbnail.jpg",
@@ -77,6 +85,12 @@ async function fetchProjectThumbnail(owner, repo) {
         console.info(`✅  ${repo}: found priority thumbnail ${match.name}`);
         return match.download_url;
       }
+    }
+
+    const webm = files.find((f) => f.name.toLowerCase().endsWith(".webm"));
+    if (webm && webm.download_url) {
+      console.info(`✅  ${repo}: found fallback WEBM ${webm.name}`);
+      return webm.download_url;
     }
 
     const gif = files.find((f) => f.name.toLowerCase().endsWith(".gif"));

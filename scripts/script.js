@@ -471,6 +471,37 @@ function parseMarkdownLinks(text) {
   });
 }
 
+function isWebmThumbnail(src) {
+  return /\.webm(?:[?#].*)?$/i.test(String(src || ""));
+}
+
+function buildProjectThumbnailHtml(thumbnail, name) {
+  const safeThumbnail = escapeHtml(thumbnail);
+  const safeName = escapeHtml(name);
+
+  if (isWebmThumbnail(thumbnail)) {
+    return `<video
+          class="project-thumbnail"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          onloadeddata="this.style.opacity='1'; this.previousElementSibling.style.display='none';"
+        >
+          <source src="${safeThumbnail}" type="video/webm">
+        </video>`;
+  }
+
+  return `<img
+          src="${safeThumbnail}"
+          alt="${safeName} Thumbnail"
+          class="project-thumbnail"
+          loading="lazy"
+          onload="this.style.opacity='1'; this.previousElementSibling.style.display='none';"
+        >`;
+}
+
 function generateSummaryHTML(summary) {
   if (!Array.isArray(summary) || summary.length === 0) {
     return "<p>No summary available.</p>";
@@ -502,6 +533,7 @@ function buildProjectCard(project) {
   projectCard.dataset.repo = project.name;
 
   const projectThumbnail = project.thumbnail || "images/blank-thumbnail.jpg";
+  const projectThumbnailHtml = buildProjectThumbnailHtml(projectThumbnail, project.name);
   const engineBadge = getEngineBadge(project.topics || []);
   const projectSummaryHTML = generateSummaryHTML(project.summary);
   const websiteFlagHtml = project.link ? buildLinkFlagHtml(project.link) : "";
@@ -516,13 +548,7 @@ function buildProjectCard(project) {
       >
         ${engineBadge}
         <div class="thumbnail-spinner loading-spinner-card"></div>
-        <img
-          src="${projectThumbnail}"
-          alt="${project.name} Thumbnail"
-          class="project-thumbnail"
-          loading="lazy"
-          onload="this.style.opacity='1'; this.previousElementSibling.style.display='none';"
-        >
+        ${projectThumbnailHtml}
       </a>
       ${websiteFlagHtml}
     </div>
