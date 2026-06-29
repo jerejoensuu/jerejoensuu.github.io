@@ -2,7 +2,7 @@
   {
     "name": "procedural-animation",
     "html_url": "https://github.com/jerejoensuu/procedural-animation",
-    "thumbnail": "https://raw.githubusercontent.com/jerejoensuu/procedural-animation/main/Images/_Obstacles.webm",
+    "thumbnail": "https://raw.githubusercontent.com/jerejoensuu/procedural-animation/main/Images/thumbnail.webm",
     "description": "A Unity technical demo for procedural creature locomotion using inverse kinematics and environment-aware leg placement.",
     "summary": [
       "Solo project focused on reusable procedural animation technology",
